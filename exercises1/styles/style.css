@@ -1,0 +1,513 @@
+@charset "utf-8";
+
+body {
+    width: 100%;
+    font-family: 'Noto Sans Japanese', sans-serif;
+    color: #333333;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 2.0;
+    letter-spacing: 1.6px;
+}
+img {
+    width: 100%;
+}
+nav, h2,  footer {
+    font-family: 'Noto Serif Japanese', serif;
+}
+/* ヘッダー */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 24px 24px 36px;
+}
+header img {
+    /* display: block; */
+    width: 400px;
+}
+header img:hover {
+    opacity: 0.6;
+} 
+.menuBar ul {
+    display: flex;
+    font-weight: 500;
+}
+.menuBar ul li {
+    margin-left: 40px;
+    position: relative;
+}
+.menuBar ul li::before {
+    background: #333333;
+    content: '';
+    width: 100%;
+    height: 1px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    transform-origin: right top;
+    transform: scale(0, 1);
+    transition: transform .25s;
+}
+.menuBar ul li:hover::before {
+    transform-origin: left top;
+    transform: scale(1, 1);
+}
+header .gMenu {
+    display: none;
+}
+
+/* メイン */
+.inner {
+    max-width: 1020px;
+    padding: 20px 12px;
+    margin: 100px auto;
+}
+h2 {
+    text-align: center;
+}
+.secTitle {
+    display: block;
+    text-transform: uppercase;
+    font-size: 42px;
+    font-weight: bold;
+}
+.subTitle {
+    display: block;
+}
+.subTitle::before, 
+.subTitle::after {
+    content: "";
+    display: inline-block;
+    background-color: #333333;
+    width: 60px;
+    height: 1px;
+    margin: 0 5px 4px;
+}
+/* メインビジュアル */
+.hero .pc {
+    display: block;
+}
+.hero .sp {
+    display: none;
+}
+
+/* CONCEPT */
+#concept h3 {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 500;
+    margin: 24px 0;
+}
+
+/* SERVICE */
+#service .imgArea {
+    display: flex;
+    justify-content: space-between;
+}
+.room {
+    width: 30%;
+    margin-top: 30px;
+} 
+.room h3 {
+    font-family: 'Noto Serif Japanese', serif;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 500;
+}
+.room .more {
+    display: flex;
+    justify-content: right;
+    /* align-items: flex-end; */
+}
+.room .more img {
+    height: 0.7em;
+    width: 1.0em;
+    margin-bottom: 8px;
+}
+.room .more a:hover {
+    opacity: 0.6;
+}
+/* FLOW */
+#flow {
+    background-color: rgba(34, 62, 105 , 0.05);
+}
+#flow .subTitle {
+    color: #B71B26;
+}
+#flow .subTitle::before, 
+#flow .subTitle::after {
+    background-color: #B71B26;
+}
+#flow ol {
+    display: flex;
+    justify-content: space-around;
+}
+#flow ol li {
+    writing-mode: vertical-rl;
+    background-color: #333333;
+    color: #ffffff;
+    font-size: 28px;
+    padding : 2em 0;
+    border-radius: 30px;
+    text-align: center;
+    margin: 48px 0;
+    position: relative;
+}
+#flow ol li::after {
+    display: block;
+    content: url(../images/arrow2.svg);
+    position: absolute;
+    left: 90px;
+    top: 100px;
+}
+#flow ol li:last-child::after {
+    content: "";
+}
+
+/* Q&A */
+#qAndA .text{
+    margin: 20px 0 48px;
+}
+#qAndA dl {
+    display: flex;
+    flex-wrap: wrap;
+}
+#qAndA dt {
+    font-family: 'Noto Serif Japanese', serif;
+    width: 6%;
+    font-size: 34px;
+    font-weight: bold;
+    color: #ffffff;
+    padding-left: 11px;
+    align-self: flex-start;
+}
+.question {
+    background: url(../images/circleBlack.svg) no-repeat left center/contain;
+}
+.answer {
+    background: url(../images/circleRed.svg) no-repeat left center/contain;
+}
+#qAndA dd {
+    width: 94%;
+    padding: 10px 0 10px 10px;
+    margin: auto 0;
+}
+
+/* コンタクト */
+#contact {
+    background-color: rgba(34, 62, 105 , 0.15);
+}
+#contact form {
+    background-color: rgba(255, 255, 255, 0.5);
+    font-size: 20px;
+    padding: 48px 24px;
+    margin: 48px 0;
+}
+#contact dl {
+    display: flex;
+    flex-wrap: wrap;
+}
+#contact dt {
+    width: 35%;
+    text-align: right;
+    padding-right: 12px;
+    margin: auto 0;
+    font-weight: 700;
+    position: relative;
+}
+#contact dl dt:nth-of-type(5),
+#contact dl dt:last-of-type {
+    margin-top: 15px;
+}
+#contact dl span {
+    background-color: #B71B26;
+    color: #ffffff;
+    font-size: 16px;
+    padding: 0 10px;
+    border-radius: 8px;
+    margin-left: 8px;
+    white-space: nowrap;
+}
+#contact dd {
+    width: 65%;
+}
+.askType label {
+    padding-right: 20px;
+}
+input[type="text"], input[type="email"], textarea {
+    background-color: #ffffff;
+    margin: 12px 0;
+    height: 52px;
+}
+[name="userName"], [name="userRuby"], [name="userTel"] {
+    width: 50%;
+}
+[name="userPostCode"] {
+    width: 30%;
+}
+[name="userAdress"], [name="userEmail"], [name="userEmainAgain"] {
+    width: 100%;
+}
+[name="askContent"] {
+    width: 100%;
+    height: 150px;
+}
+input[type="submit"] {
+    background-color: #333333;
+    color: #ffffff;
+    font-family: 'Noto Serif Japanese', serif;
+    display: block;
+    padding: 10px 30px;
+    margin: 30px auto;
+}
+input[type="submit"]:hover {
+    opacity: 0.8;
+}
+
+/* フッター */
+footer {
+    background-color: #333333;
+    text-align: center;
+    padding: 24px 0;
+    position: relative;
+    margin-top: 100px;
+}
+footer img {
+    position: absolute;
+    background-color: #333333;
+    width: 50px;
+    height: 50px;
+    padding: 19px 10px 21px;
+    bottom: 60px;
+    right: 24px;
+}
+footer img:hover {
+    background-color: #444444;
+    
+}
+footer  small{
+    color: #ffffff;
+    font-size: 14px;
+}
+
+/* メディアクエリ */
+@media screen and (max-width:1138px) {
+    header {
+        margin: 24px 2.1vw 36px 24px;
+    }
+    header img {
+        width: 35.1vw;
+    }
+    .menuBar ul li {
+        font-size: 1.35vw;
+        margin-left: 3.45vw;
+    }
+    .menuBar ul li a {
+        letter-spacing: 0.1em;
+    }
+}
+
+@media screen and (max-width:1020px) {
+    #flow ol li::after {
+        left: 8.8vw
+    }
+}
+
+@media screen and (max-width: 768px) {
+    header img {
+        min-width: 240px;
+    }
+    h2 .secTitle {
+        font-size: 28px;
+    }
+    h2 .subTitle {
+        font-size: 12px;
+    }
+    .inner {
+        margin: 50px 0;
+    }
+    header .menuBar {
+        display: none;
+    }
+    header .gMenu {
+        display: block;
+    }
+    .hero .pc {
+        display: none;
+    }
+    .hero .sp {
+        display: block;
+        height: 90vh;
+        object-fit: cover;
+    }
+    #concept h3 {
+        font-size: 20px;
+    }
+    #concept p {
+        font-size: 14px;
+    }
+    #service .imgArea {
+        display: block;
+    }
+    #service .room {
+        width: 100%;
+        text-align: center;
+    }
+    #service .room p {
+        font-size: 14px;
+        text-align: left;
+    }
+    #flow ol {
+        display: block;
+        width: 300px;
+        margin: 0 auto;
+    }
+    #flow ol li {
+        writing-mode: horizontal-tb;
+        font-size: 18px;
+        padding: 0;
+    }
+    #flow ol li::after {
+        content: url(../images/arrow4.svg);
+        position: absolute;
+        left: 135px;
+        top: 45px;
+    }
+    #qAndA dt{
+        width: 10%;
+        font-size: 20px;
+    }
+    #qAndA dd {
+        width: 90%;
+    }
+    #contact form {
+        background: none;
+        padding: 10px 0;
+        margin: 0;
+    }
+    #contact dl {
+        display: block;
+        text-align: left;
+    }
+    #contact dt {
+        width: 100%;
+        text-align: center;
+        padding-right: 0;
+        margin: auto 0;
+        font-size: 16px;
+    }
+    #contact dt span {
+        font-size: 10px;
+        padding: 0 7px;
+        border-radius: 8px;
+        margin-left: 8px;
+    }
+    #contact dl dt:nth-of-type(5),
+    #contact dl dt:last-of-type {
+        margin-top: 15px;
+    }
+    #contact dd {
+        width: 100%;
+        margin-bottom: 8px;
+    }
+    #contact .askType {
+        text-align: center;
+        font-size: 14px;
+    }
+    input[type="text"], input[type="email"], textarea {
+        margin: 0;
+        height: 30px;
+    }
+    [name="userName"], [name="userRuby"], [name="userTel"] {
+        width: 100%;
+    }
+    [name="userPostCode"]{
+        width: 40%;
+    }
+    input[type="submit"] {
+        font-size: 16px;
+    }
+    footer small {
+        font-size: 12px;
+    }
+
+    /* メニューを画面上部に固定表示しています */
+.gMenu {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 100%;
+    z-index: 99;
+  }
+  /* メニューアイコンを画面右上に固定しています */
+  .gMenu .menuIcon {
+    cursor: pointer;
+    position: absolute;
+    right: 30px;
+    top: 40px;
+    padding-top: 5px;
+    height: 12px;
+  }
+  /* メニューアイコン（三本線）の真ん中の線です */
+  .gMenu .menuIcon .navicon {
+    background: #B71B26; /* 色は自由に変更可能です */
+    display: block;
+    height: 2px; /* 太さ */
+    width: 31px; /* 長さ */
+    position: relative;
+    transition: background .4s ease-out; /* 形が変わる時のアニメーション */
+  }
+  /* メニューアイコン（三本線）の上と下の線を疑似要素で追加 */
+  .gMenu .menuIcon .navicon::before,
+  .gMenu .menuIcon .navicon::after {
+    background: #B71B26; /* 色は自由に変更可能です */
+    content: '';
+    display: block;
+    height: 100%;
+    position: absolute;
+    transition: all .4s ease-out; /* 形が変わる時のアニメーション */
+    width: 100%;
+  }
+  .gMenu .menuIcon .navicon::before {top: 10px;} /* 位置を上にずらしています */
+  .gMenu .menuIcon .navicon::after {top: -10px;} /* 位置を下にずらしています */
+  /* 表示されるメニューです */
+  .gMenu .menu {
+    background-color: rgba(255,255,255,0.9);
+    overflow: hidden;
+    max-height: 0; /* ★最初は高さを0にして非表示状態に */
+    transition: max-height .6s; /* 表示されるときのアニメーション */
+    text-align: center;
+  }
+  /* メニュー部分のデザインです */
+  .gMenu .menu li:first-of-type {
+    padding-top: 50px;
+  }
+  .gMenu .menu li a {
+    display: block;
+    padding: 24px 20px;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+  .gMenu .menu li:last-of-type {
+    padding-bottom: calc(100vh - 450px);
+  }
+  .gMenu .menu li a:hover {
+    background-color: #f4f4f4;
+  }
+  /* チェックボックスは常に非表示です */
+  .gMenu .menuBtn {
+    display: none;
+  }
+  /* ▼▼▼以下はチェックボックスがONの時の状態です▼▼▼ */
+  .gMenu .menuBtn:checked ~ .menu {
+    max-height: 100vh; /* ★チェックボックスがオンの時高さを338pxにして表示させます */
+    transition: max-height .6s;
+  }
+  /* メニューボタンの中央の線を非表示に */
+  .gMenu .menuBtn:checked ~ .menuIcon .navicon {background: transparent;}
+  
+  /* メニューボタンの上下の線を45度傾けて✕印を作ります */
+  .gMenu .menuBtn:checked ~ .menuIcon .navicon::before {transform: rotate(-45deg);top: 0;}
+  .gMenu .menuBtn:checked ~ .menuIcon .navicon::after {transform: rotate(45deg);top: 0;}
+}
