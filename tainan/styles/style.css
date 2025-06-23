@@ -1,0 +1,365 @@
+@charset "utf-8";
+
+/* 共通 */
+body {
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+    font-size: 20px;
+    background-color: #F4F4F4;
+    width: 100%;
+    line-height: 1.6;
+}
+img {
+    max-width: 100%;
+    object-fit: cover;
+}
+.innerWrap {
+    max-width: 1160px;
+    height: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+section {
+    padding: 40px 0px;
+}
+section h2 {
+    font-size: 48px;
+    background: url(../images/headerBG.png) no-repeat left top/contain;
+    width: 530px;
+    height: 96px;
+    text-align: center;
+}
+section h2 span {
+    font-size: 24px;
+    margin-left: 20px;
+}
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* ヒーロー */
+.hero {
+    width: 100%;
+    height: 100vh;
+    background: url(../images/heroTainanPC.png) no-repeat left top/cover;
+}
+.hero .innerWrap {
+    position: relative;
+}
+.hero .innerWrap > img {
+    position: absolute;
+    left: 25%;
+    top: 30px;
+}
+.hero .innerWrap .lead {
+    color: #ffffff;
+    width: 467px;
+    position: absolute;
+    right: 0;
+    bottom: 10px;
+    font-weight: bold;
+}
+.hero .innerWrap .snsLinks {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+}
+.hero .snsLinks img {
+    margin-bottom: 40px;
+    cursor: pointer;
+}
+
+/* パンくずリスト */
+.pankuzu {
+    border-bottom: 1px solid #000000;
+    padding: 20px 0;
+}
+
+/* 観光名所 */
+#attraction h3 {
+    font-size: 36px;
+    font-weight: bold;
+    letter-spacing: 0.3em;
+    margin: 80px 0 20px;
+}
+#attraction .flex {
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+#attraction .flex .img{
+    width: 55%;
+    display: flex;
+}
+#attraction .flex p {
+    width: 42%;
+    background-color: rgba(100, 201, 155, 0.2);
+    padding: 40px;
+}
+#attraction .flex .img2 {
+    width: 55%;
+    display: flex;
+    justify-content: space-between;
+}
+#attraction .flex .img2 img {
+    width: 47%;
+}
+#attraction .flex p span {
+    display: block;
+    font-weight: bold;
+    text-align: center;
+}
+#attraction .anpin::after,
+#attraction .sekkan::after {
+    display: block;
+    content: '';
+    width: 50%;
+    height: 1px;
+    background-color: #000000;
+    margin: 0 auto;
+}
+
+/* グルメ */
+#gourmet .sectionTitle {
+    display: flex;
+    justify-content: end;
+}
+#gourmet .lead{
+    margin-top: 60px;
+    padding: 60px 0;
+    border-top: 1px solid #000000;
+    border-bottom: 1px solid #000000;
+    width: 420px;
+}
+#gourmet .flex {
+    justify-content: space-between;
+}
+#gourmet .dish {
+    width: 48%;
+    border-bottom: 1px solid #000000;
+}
+#gourmet .dish h3 {
+    font-size: 36px;
+    margin: 60px 0 20px;
+}
+#gourmet .dish h3 span {
+    font-size: 24px;
+    margin-left: 20px;
+}
+#gourmet .dish .about {
+    margin-top: 20px;
+}
+
+/* モーダル */
+#gourmet .dish .modal {
+    background-color: #ffffff;
+    width: 580px;
+    height: 580px;
+}
+#gourmet .dish .modalContents {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+#gourmet .dish .modalContents img {
+    width: 90%;
+    height: 90%;
+    margin: auto;
+}
+#gourmet .dish .openImage {
+    padding: 40px 0;
+}
+#gourmet .dish .openImage button:hover {
+    opacity: 0.7;
+}
+.modalCloseWrap {
+    top: 10px;
+    right: 10px;
+}
+
+/* ピックアップ */
+#pickUp .innerWrap::after {
+    display: block;
+    content: '';
+    width: 50%;
+    height: 1px;
+    background-color: #000000;
+    margin: 80px auto 0;
+}
+#pickUp .lead {
+    width: 420px;
+    margin-top: 80px;
+}
+#pickUp .lead h3 {
+    font-size: 36px;
+    text-align: center;
+}
+#pickUp .lead p {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #000000;
+    margin-bottom: 60px;
+}
+#pickUp .onsen1 {
+    justify-content: space-between;
+    margin-bottom: 80px;
+}
+#pickUp .onsen1 img {
+    width: 60%;
+}
+#pickUp .onsen1 p {
+    width: 35%;
+    display: flex;
+    align-items: center;
+}
+#pickUp .onsen2 {
+    justify-content: space-between;
+}
+#pickUp .onsen2 img {
+    width: 48%;
+}
+#pickUp .text {
+    text-align: center;
+    margin: 80px 0;
+}
+#pickUp .lotus {
+    justify-content: space-between;
+}
+#pickUp .lotus > img {
+    width: 60%;
+}
+#pickUp .lotus .flexcolumn{
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* TOPへ戻る */
+.returnTop {
+    transform: rotate(-90deg);
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+
+@media screen and (max-width:768px) {
+    /* 共通 */
+    body {
+        font-size: 12px;
+    }
+    .flex {
+        display: block;
+    }
+    section h2 {
+        font-size: 24px;
+        width: 220px;
+        height: 40px;
+        margin: 0 auto;
+    }
+    section h2 span {
+        font-size: 12px;
+        margin-left: 10px;
+    }
+    .inner2 {
+        max-width: 80%;
+        margin: 0 auto;
+    }
+    /* ヒーロー */
+    .hero {
+        background: url(../images/heroTainanSP.png) no-repeat left top/cover;
+    }
+    .hero .innerWrap > img {
+        width: 199px;
+        left: 16%;
+        top: 16%;
+    }
+    .hero .innerWrap .lead {
+        width: 247px;
+    }
+
+    /* 観光名所 */
+    #attraction h3 {
+        font-size: 24px;
+        margin: 40px 0 20px;
+        text-align: center;
+    }
+    #attraction .flex {
+        margin-bottom: 20px;
+    }
+    #attraction .flex .img {
+        width: 100%;
+    }
+    #attraction .flex p {
+        width: 100%;
+        padding: 8px 36px;
+        margin-top: 20px;
+    }
+    #attraction .sekkan .flex p:nth-of-type(2) {
+        text-align: center;
+    }
+    #attraction .flex .img2 {
+        width: 100%;
+        display: flex;
+    }
+
+
+    /* グルメ */
+    #gourmet .lead {
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+    #gourmet .dish {
+        width: 100%;
+        text-align: center;
+    }
+    #gourmet .dish h3 {
+        font-size: 32px;
+    }
+    #gourmet .dish h3 span {
+        display: block;
+        font-size: 16px;
+    }
+    #gourmet .dish .about {
+        text-align: start;
+    }
+    #gourmet .dish .openImage {
+        padding: 20px 0;
+        text-align: end;
+    }
+    #gourmet .dish .modal {
+        width: 375px;
+        height: 375px;
+    }
+
+    /* ピックアップ */
+    #pickUp .lead {
+        width: 100%;
+        margin-top: 60px;
+    }
+    #pickUp .lead h3 {
+        font-size: 24px;
+    }
+    #pickUp .onsen1 img,
+    #pickUp .onsen1 p,
+    #pickUp .lotus > img,
+    #pickUp .lotus .flexcolumn {
+        width: 100%;
+    }
+    #pickUp .text, 
+    #pickUp p {
+        margin: 20px auto;
+        font-weight: normal;
+        text-align: start;
+    }
+    #pickUp .onsen1 {
+        margin-bottom: 0;
+    }
+    #pickUp .onsen2 img {
+        height: 81px;
+    }
+}
