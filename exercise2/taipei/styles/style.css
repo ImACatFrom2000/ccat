@@ -1,0 +1,354 @@
+@charset "utf-8";
+header {
+  position: relative;
+}
+body {
+  background-color:  #f4f4f4;
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: 20px;
+  color: #121212;
+  width: 100%;
+}
+img  {
+  max-width: 100%;
+}
+.hero {
+  background:url(../images/taipeiHero.png) no-repeat left top/cover;
+  position:relative;
+  width: 1366px;
+  height: 768px;
+}
+.hero p {
+  color: #ffffff;
+  width: 467px;
+  font-weight :bold;
+  position: absolute;
+  top: 652px;
+  right: 103px;
+}
+main .hero img { 
+padding: 6px 0;
+width: 300px;
+height: 539px;
+position: absolute;
+top: 94px;
+left: 363px;
+}
+
+main .topSP {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
+main .pankuzu {
+border-bottom: 1px solid;
+margin-bottom: 44px;
+}
+#attraction {
+width: 1160px;
+margin: 0 auto 80px;
+}
+main #attraction h2 {
+  background:url(../images/headerBackground.png) no-repeat left top/contain;
+  font-size: 48px;
+  margin-bottom: 80px;
+  width: 530px;
+  height: 96px;
+  text-align: center;
+}
+main #attraction h2 span {
+  font-size: 24px;
+}
+main .kyuhun h3 {
+  font-size: 36px;
+  font-weight: bold;
+}
+main .kyuhun img {
+  margin-bottom: 20px;
+}
+main .kyuhun p {
+  font-size: 20px;
+  line-height: 32px;
+}
+main .kyuhunSubimages  {
+  display: flex;
+  justify-content: space-between;
+  width: 600px;
+}
+main .kyuhunSubimages img {
+  width: 290px;
+}
+main .kyuhun290 p {
+  width: 500px;
+  height: 160px;
+  background-color: rgba(108, 186, 216, .20);
+  text-align: center;
+}
+main .kyuhun290 p span {
+  font-weight: bold;
+}
+main .kyuhun290 {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 160px;
+} 
+
+main .imageTosentense {
+  display: flex;
+  justify-content: space-between;
+}
+
+main .imageTosentense img {
+  width: 600px;
+  height: 360px;
+}
+main .imageTosentense p {
+  background-color: rgba(108, 186, 216, .20);
+  padding: 20px  40px;
+  width: 500px;
+  height: 360px;
+}
+
+main .taipei101::before{
+  content: '';
+  height: 1px;
+  width: 480px;
+  background-color: #000000;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 80px;
+}
+
+main .taipei101 img {
+  margin-bottom: 20px;
+}
+main .taipei101Images {
+  display: flex;
+  justify-content: space-between;
+}
+main .taipei101Plussentense {
+  display: flex;
+  justify-content: space-between;
+}
+
+main .taipei101Subimages {
+  display: flex;
+  justify-content: space-between;
+  width: 600px;
+}
+main .taipei101Subimages img { 
+  width: 290px;
+  height: 167px;
+}
+main .taipei101Plussentense p {
+  width: 500px;
+  background-color: rgba(108, 186, 216, .20);
+  height: 160px;
+  padding: 40px 80px 100px;
+  text-align: center;
+}
+main .taipei101Plussentense p span {
+  font-weight: bold;
+}
+
+main #nightMarket::before{
+  content: '';
+  height: 1px;
+  width: 480px;
+  background-color: #000000;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 80px;
+}
+#nightMarket {
+width: 1160px;
+margin: 0 auto 80px;
+}
+main #nightMarket h2 {
+  background:url(../images/headerBackground.png) no-repeat left top/contain;
+  font-size: 48px;
+  text-align: right;
+  width: 530px;
+  height: 96px;
+  text-align: center;
+  margin: 0 103px 80px 733px;
+
+}
+main #nightMarket h2 span {
+  font-size: 24px;
+}
+.nightMarket ul li {
+  background:url(../images/buttonFrame.png) no-repeat left top/contain;
+  width: 210px;
+  height: 90px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} 
+main .nightMarket img {
+  width: 540px;
+}
+main .nightMarketPic {
+  display: flex;
+  justify-content: space-between;
+}
+main .nightMarketPic p {
+  width:  420px;
+  border-top:1px solid;
+  border-bottom:1px solid;
+  font-size: 20px;
+  line-height: 32px;
+  height: 264px;
+}
+main .nightMarketPic img {
+  margin-bottom: 120px;
+}
+main .nightCityframe {
+  display: flex;
+  justify-content: space-between;
+}
+main .nightCityframe ul {
+  display: grid;
+  width:fit-content;
+  column-gap: 2em;
+  grid-template-columns: repeat(2, auto);
+}
+#access {
+width: 1160px;
+margin: 0 auto;
+}
+main #access h2 {
+  background:url(../images/headerBackground.png) no-repeat left top/contain;
+  font-size: 48px;
+  width: 530px;
+  height: 96px;
+  text-align: center;
+}
+main #access h2 span {
+  font-size: 24px;
+}
+main .accessPic p {
+border-bottom: 1px solid;
+margin: 80px 73px;
+padding-bottom: 40px;
+width: 384px;
+}
+main .accessPic img {
+  width: 1160px;
+}
+
+main .list {
+  display: flex;
+  justify-content: space-between;
+  width: 1040px;
+  margin:120px auto 60px;
+}
+main .list p {
+  width: 400px;
+  font-size: 24px;
+  line-height: 38.4px;
+}
+main .listPart {
+  display: flex;
+  justify-content: space-between;
+  width :1040px;
+  margin:0 auto 40px;
+}
+
+main .listPart p {
+  width: 400px;
+  font-size: 24px;
+  line-height: 38.4px;
+}
+main .cardPicture {
+  text-align: right;
+  margin: 0 117px 80px 0;
+}
+main .cardPicture img {
+  width: 246px;
+}
+
+
+
+
+.msgSec p.illust::after {
+ content: url(../images/deco_right.png);
+ position: absolute;
+ right: 320px;
+ bottom: -30px; 
+}
+@media screen and (max-width: 768px) {
+  body {
+    font-size:12px
+  }
+.hero {
+  background:url(../images/taipeiHeroSP.png) no-repeat left top/cover;
+  position:relative;
+  width: 375px;
+  height: 677px;
+}
+main .hero img { 
+  width: 199px;
+  height: 372px;
+  top: 121px;
+  left: 88px;
+}
+#attraction, #nightMarket, #access {
+  width: 375px;
+}
+main #nightMarket h2 {
+  margin-left: 0;
+}
+
+/* main .nightCityframe,
+main .list,
+main .listPart {
+  display: block;
+  width: 100%;
+} */
+main #attraction h2, main #nightMarket h2, main #access h2 {
+  font-size: 24px;
+  margin-bottom: 80px;
+  width: 220px;
+  height: 40px;
+}
+main .imageTosentense {
+  display: block;
+}
+main .kyuhun290 {
+  display: block;
+} 
+main .taipei101Plussentense {
+  display: block;
+}
+main .nightMarketPic {
+  display: block;
+}
+.nightMarket ul li {
+  width: 131.5px;
+  height: 48px;
+} 
+main .nightCityframe {
+  display: block;
+}
+main .list {
+  display: block;
+  width: 100%;
+}
+main .listPart {
+  display: block;
+  width :100%;
+}
+main .accessPic img {
+  width: 100%;
+}
+.hero p {
+  color: #ffffff;
+  width: 247px;
+  font-weight :bold;
+  position: absolute;
+  top: 601.4px;
+  right: 20px;
+}
+}
