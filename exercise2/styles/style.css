@@ -1,0 +1,417 @@
+@charset "utf-8";
+
+/* 共通 */
+body {
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+    font-size: clamp(12px, 3.2vw, 20px);
+    background-color: #F4F4F4;
+    width: 100%;
+    line-height: 1.6;
+}
+img {
+    max-width: 100%;
+    object-fit: cover;
+}
+.innerWrap {
+    max-width: 1160px;
+    height: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+.container {
+    padding: 0 56px;
+}
+section {
+    padding: 40px 0px;
+}
+section h2 {
+    font-size: 48px;
+    background: url(../images/headerBG.png) no-repeat left top/cover;
+    width: 530px;
+    height: 96px;
+    text-align: center;
+    margin-bottom: 120px;
+}
+section h2 span {
+    font-size: 24px;
+    margin-left: 20px;
+}
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* ヒーロー画像 */
+.hero {
+    background: url(../images/heroTaiwanPC.png) no-repeat left top/cover;
+    width: 100%;
+    height: 100vh;
+}
+.hero .innerWrap {
+    position: relative;
+}
+.hero .innerWrap > img {
+    position: absolute;
+    left: 15%;
+    top: 20%;
+}
+.hero .innerWrap .snsLinks {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+}
+.hero .snsLinks img {
+    margin-bottom: 40px;
+    cursor: pointer;
+}
+
+/* イントロ */
+.intro .innerWrap{
+    padding-top: 80px;
+    padding-bottom: 80px;
+    justify-content: space-between;
+}
+.left {
+    width: 40%;
+}
+.right {
+    width: 55%;
+}
+.formosa {
+    background: url(../images/introBG1pc.png) no-repeat center center/cover;
+}
+.formosa .left {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.formosa .left img {
+    width: 104px;
+    height: 78px;
+    margin: 0 auto;
+}
+.formosa h2 {
+    font-size: 48px;
+    border-bottom: 1px solid #000000;
+}
+.formosa h2 span {
+    display: inline-block;
+    font-size: 32px;
+}
+.intro .about {
+    background: url(../images/introBG2pc.png) no-repeat center center/cover;
+}
+.intro .about .left {
+    border-top: 1px solid #000000;
+    border-bottom: 1px solid #000000;
+    display: flex;
+    align-items: center;
+}
+
+/* ギャラリー */
+#gallery {
+    overflow: hidden;
+}
+#gallery #slider {
+    margin: 160px calc((50% - 50vw) - (2625px - 100vw)/ 2) 60px;
+    text-align: center;
+    flex-wrap: nowrap;
+    width: 100vw;
+}
+#gallery #slider li {
+    min-width: 295px;
+    height: 467px;
+    margin-right: 80px;
+}
+#gallery #slider li img {
+    width: 100%;
+}
+#gallery .sliderArrow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+@keyframes slideL {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-375px);
+    }
+}
+.slideL {
+    animation-name: slideL;
+    animation-duration: 500ms;
+    animation-timing-function: ease-out;
+    animation-iteration-count: 1;
+}
+@keyframes slideR {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(375px);
+    }
+}
+.slideR {
+    animation-name: slideR;
+    animation-duration: 500ms;
+    animation-timing-function: ease-out;
+    animation-iteration-count: 1;
+}
+#gallery .sliderArrow .circles {
+    display: flex;
+}
+#gallery .sliderArrow span {
+    content: '';
+    width: 28px;
+    height: 28px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    margin: 0 30px;
+}
+#gallery .sliderArrow .selected {
+    background-color: rgba(0, 0, 0, 1)
+}
+
+/* おすすめスポット */
+#travel .sectionTitle {
+    display: flex;
+    justify-content: end;
+}
+#travel .innerWrap::after {
+    display: block;
+    content: '';
+    height: 1px;
+    width: 50%;
+    background-color: #000000;
+    margin: 150px auto 0;
+}
+#travel .flex .text {
+    width: 50%;
+    display: flex;
+    align-items: center;
+}
+#travel .flex .text p {
+    border-top: 1px solid #000000;
+    border-bottom: 1px solid #000000;
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+#travel .flex .link {
+    background: url(../images/map.png) no-repeat center center/contain;
+    width: 50%;
+    height: 508px;
+    position: relative;
+}
+#travel .link img {
+    height: 209px;
+}
+#linkTaipei {
+    position: absolute;
+    left: 70%;
+    top: 10%;
+}
+#linkTaichu {
+    position: absolute;
+    left: 16%;
+    top: 20%;
+}
+#linkTainan {
+    position: absolute;
+    left: 25%;
+    top: 80%;
+}
+
+/* おすすめイベント */
+#event .event .flex {
+    justify-content: space-between;
+    align-items: center;
+}
+#event h3 {
+    font-size: 36px;
+    margin:80px 0 40px;
+}
+#event img {
+    width: 50%;
+    height: 50%;
+}
+#event .text {
+    width: 46%;
+    text-align: center;
+}
+#event .text p {
+    margin: 32px 0;
+}
+#event .text .period {
+    font-weight: bold;
+}
+#event .text .about {
+    border-top: 1px solid #000000;
+    border-bottom: 1px solid #000000;
+    padding: 32px 0;
+    margin: 32px 55px;
+    text-align: start;
+}
+
+/* 台湾基本情報 */
+#info {
+    padding: 40px 20px;
+}
+#info ul {
+    width: 50%;
+}
+#info .innerWrap {
+    border: 1px solid #8F8F8F;
+    padding: 40px 40px 80px;
+}
+#info h2 {
+    width: auto;
+    background: none;
+    font-size: 40px;
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+/* TOPへ戻る */
+.returnTop {
+    transform: rotate(-90deg);
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+
+@media screen and (max-width:768px) {
+    /* 共通 */
+    body {
+        /* font-size: 12px; */
+        text-align: center;
+    }
+    .flex {
+        display: block;
+        text-align: start;
+    }
+    section h2 {
+        font-size: 24px;
+        width: 220px;
+        height: 40px;
+        margin: 0 auto 60px;
+    }
+    section h2 span {
+        font-size: 12px;
+        margin-left: 10px;
+    }
+    /* ヒーロー */
+    .hero {
+        background: url(../images/heroTaiwanSP.png) no-repeat left top/cover;
+    }
+    .hero .innerWrap > img {
+        width: 280px;
+        left: 0;
+        top: 25%;
+    }
+
+    /* イントロ */
+    .intro .innerWrap {
+        padding-top: 20px;
+        padding-bottom: 60px;
+    }
+    .left, .right {
+        width: 100%;
+    }
+    .formosa .left img {
+        width: 32px;
+        height: 24px;
+    }
+    .formosa h2 {
+        font-size: 20px;
+        text-align: center;
+        margin: 40px auto 60px;
+    }
+    .formosa h2 span {
+        display: block;
+        font-size: 12px;
+        padding: 20px 0 12px;
+    }
+    .intro .about .left {
+        margin-bottom: 60px;
+    }
+
+    .intro .about .left p {
+        padding-top: 32px;
+        padding-bottom: 32px;
+    }
+
+    /* ギャラリー */
+    #gallery .flex{
+        display: flex;
+    }
+    #gallery .sliderArrow #arrowL,
+    #gallery .sliderArrow #arrowR {
+        display: none;
+    }
+    #gallery .sliderArrow span {
+        width: 18px;
+        height: 18px;
+        margin: 0 20px;
+    }
+    #gallery #slider {
+        margin: 80px calc((50% - 50vw) - (2205px - 100vw) / 2) 60px;
+    } 
+    #gallery #slider li {
+        margin-right: 20px;
+    }
+    
+    @keyframes slideL {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(-315px);
+        }
+    }
+
+    /* おすすめスポット */
+    #travel .flex .text {
+        width: 100%;
+    }
+    #travel .flex .text p {
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+    #travel .flex .link {
+        width: 100%;
+        height: 355px;
+        margin: 60px 0 100px;
+    }
+    #travel .link img {
+        height: 126px;
+    }
+
+    /* おすすめイベント */
+    #event h3 {
+        font-size: 20px;
+        margin:60px 0 20px;
+    }
+    #event img {
+        width: 100%;
+        height: 100%;
+    }
+    #event .text {
+        width: 100%;
+        text-align: center;
+    }
+    #event .text p {
+        margin: 8px 0;
+    }
+    #event .text .about {
+        padding: 12px 0;
+    }
+
+    /* 台湾基本情報 */
+    #info ul {
+        width: 100%;
+    }
+}

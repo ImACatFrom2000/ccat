@@ -1,0 +1,337 @@
+@charset "utf-8";
+header {
+    width: 100%;
+    position: relative;
+}
+.topBar {
+    width: 100%;
+    display: flex;
+    background-color: rgba(0, 0, 0, .25);
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 103px;
+    position: absolute;
+    z-index: 100;
+}
+header h1 img {
+    width: 133px;
+}
+header nav ul {
+    display: flex;
+    width: 644px;
+    justify-content: space-between;
+}
+header nav ul li {
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff;
+}
+header h2 img {
+    max-width: 100%;
+    display: block;
+    position: relative;
+}
+
+/*ローディング画面*/
+.loaderBg {
+  align-items: center; 
+  background-color: #007AB7;
+  display: flex; 
+  height: 100vh; 
+  justify-content: center; 
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100vw; 
+  z-index: 9999;
+}
+/*ローディング画面ここまで*/
+
+/*モーダル*/
+.openHour {
+    text-align: right;
+    font-family: "Noto Sans JP";
+    width: 213px;
+    margin-left: auto;
+    border: 4px solid  rgba(237, 161, 132, .20);
+    padding: 28px 32px;
+    margin-top: 20px;
+}
+.overlay {
+    position: fixed;
+    width: 100vw;
+    height: 100%;
+    background: grey;
+    opacity: .6;
+    display: none;
+    z-index: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+.modal {
+    width: 900px;
+    height: 600px;
+    border: 1px solid #000;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #0180BE;
+    display: none;
+    z-index: 1000;
+    color: #fff;
+}
+.modal img {
+    width: 380px;
+}
+.modal p {
+    position: absolute;
+    z-index: 10;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 38px;
+}
+.modalContents {
+    width: 820px;
+    padding-left: 40px;
+}
+.modalContents h2 {
+    font-size: 36px;
+    font-weight: bold;
+}
+.modalPic {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0 20px;
+}
+.modalCloseWrap {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+.modalClose {
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+}
+.modalClose span {
+    position: absolute;
+    width: 24px;
+    height: 4px;
+    background: black;
+    display: block;
+}
+.modalClose span:nth-child(1) {
+    transform: rotate(45deg);
+}
+.modalClose span:nth-child(2) {
+    transform: rotate(-45deg);
+}
+.modal,
+.overlay {
+    display: none;
+}
+.modal.open,
+.overlay.open {
+    display: block;
+}
+/*モーダルここまで*/
+
+footer {
+    background-color: #007AB7;
+    color: #ffffff;
+    text-align: center;
+}
+.footerFlag img {
+    width: 64px;
+    padding: 40px 0 80px;
+}
+.onlySP, .heroSP, .logoSP, .hamburger, .navSP {
+    display: none;
+}
+.footerMain {
+    padding: 0 103px 20px;
+    display: flex;
+    justify-content: space-between;
+    text-align: left;
+    align-items: flex-end;
+    border-bottom: 1px solid #03A9F4;
+}
+.footerLinks li {
+    border-bottom: 1px solid white;
+    width: 332px;
+    padding: 20px 0 12px;
+}
+.footerLogo img {
+    width: 256px;
+    position: relative;
+    left: -60px;
+}
+.footerIcons {
+    display: flex;
+}
+.footerIcons img {
+    padding-left: 40px;
+}
+small {
+    align-self: center;
+}
+.copyright {
+      padding: 20px 0;
+}
+
+@media screen and (max-width: 768px) {
+    .topBar, .onlyPC {
+        display: none;
+    }
+    .onlySP, .heroSP, .logoSP {
+        display: block;
+    }
+    .heroSP {
+        position: relative;
+        z-index: -10;
+    }
+    .logoSP img {
+        position: absolute;
+        z-index: 100;
+        width: 111px;
+        left: 20px;
+        top: 5px;
+    }
+    header nav ul li {
+    font-size: 12px;
+    }
+
+    .hamburger {
+        display: block;
+        position: absolute;
+        right: 5px;
+        top: 5px;
+        align-self: center;
+        margin-left: 16px;
+        text-align: center;
+        z-index: 200;
+        color: #ffffff;
+    }
+    #openNav.opened {
+        opacity: 0.4; 
+    }
+    .navSP {
+        display: block;
+        position: fixed;
+        right: -225px;
+        top: 0;
+        background-color: rgba(0, 122, 183, .9);
+        width: 225px;
+        height: 100%;
+        color: #ffffff;
+        font-size: 24px;
+        transform: translate3d(225px, 0, 0);
+        z-index: 1000;
+    }
+    .navSP a {
+        text-decoration: underline 1px;
+        font-size: 20px;
+    }
+    .navSP p {
+        text-align: center;
+        padding-top: 84px;
+    }
+    .navSP ul {
+        text-align: center;
+        line-height: 2;
+    }
+    .ulTop {
+        padding: 40px 0 20px;
+    }
+    .ulPolicy {
+        padding: 20px 0 20px;
+    }
+    .navSP img {
+        width: 111px; 
+    }
+    .show {
+        transform: translate3d(-225px, 0, 0);
+    }
+    .close {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        cursor: pointer;
+        z-index: 400;
+    }
+    .close img{
+        width: 48px;
+    }
+    #wrapper, #nav {
+        transition: transform 0.3s;
+    }
+
+    /*モーダル*/
+    .openHour {
+        font-size: 12px;
+        width: 112px;
+        padding: 10px;
+        margin-top: 8px;
+    }
+    html, body {
+        width: 100%;
+        overflow-x: hidden;
+    }
+    .modal {
+        width: 370px;
+        height: 425px;
+    }
+    .modal img {
+        width: 157px;
+    }
+    .modal p {
+        font-size: 12px;
+        line-height: 19px;
+    }
+    .modalContents {
+        width: 335px;
+        padding-left: 20px;
+    }
+    .modalContents h2 {
+        font-size: 24px;;
+        text-align: center;
+        padding-top: 40px;
+    }
+    .modalContents p {
+        padding-top: 20px;
+    }
+    /*モーダルここまで*/
+
+    .footerFlag img {
+        width: 32px;
+        padding: 20px 0;
+    }
+    .footerMain {
+        display: block;
+    }
+    .footerLinks {
+        padding-bottom: 10px;
+    }
+    .footerLinks li {
+        width: 332px;
+        padding: 12px 0 6px;
+}
+    .footerLinks li {
+        width: 195px;
+    }
+    .footerLogo img {
+        width: 71px;
+        position: relative;
+        top: 30px;
+    }
+    .footerIcons img {
+    padding-left: 20px;
+}
+}
