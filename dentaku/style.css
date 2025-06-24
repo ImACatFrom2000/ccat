@@ -1,0 +1,21 @@
+@charset "utf-8";
+
+body {
+    font-size: 32px;
+    width: 100%;
+}
+
+#answer {
+    width: 500px;
+    height: 40px;
+    background-color: gray;
+    margin-bottom: 20px;
+    padding: 8px;
+    color: white;
+    text-align: end;
+}
+
+button {
+    font-size: 32px;
+    width: 50px;
+}
