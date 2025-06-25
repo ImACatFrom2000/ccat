@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang = "ja">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <link rel="stylesheet" href="../css/reset.css">
+        <link rel="stylesheet" href="style.css">
+        <title>10進数から2進数・16進数へ変換</title>
+    </head>
+    <body>
+        <header>
+            <h1>10進数から2進数・16進数へ変換 </h1>
+        </header>
+        <main>
+            <form class="form">
+                <p>1以上の整数を入力してください</p>
+                <input type="text" name="num" style="border: 1px solid black;">
+                <input type="submit" value="変換" style="border: 1px solid black; background-color: gray; color: white;">
+            </form>
+            <div class="output">
+                <p>2進数: <span id="change2"></span></p>
+                <p>16進数: <span id="change16"></span></p>
+            </div>
+        </main>
+        <aside>
+            <h3>関連リンク</h3>
+            <ul>
+                <li><a href="index.html">10進数から2進数・16進数へ変換</a></li>
+                <li><a href="index2.html">2進数から10進数へ変換</a></li>
+                <li><a href="index3.html">16進数から10進数へ変換</a></li>
+            </ul>
+        </aside>
+        <footer>
+            <p><small>Nanami Kondou</small></p>
+        </footer>
+        <script src="../scripts/jquery-3.7.1.min.js"></script>
+        <script>
+            'use strict';
+
+            $(document).ready(function(){
+                $('input[type="submit"]').on('click', function(){
+                    event.preventDefault();
+                    const num10 = document.querySelector('input[type="text"]').value;
+                    let div = num10;
+                    let add;
+                    
+                    //二進数へ変換
+                    let num2;
+                    change2();
+                    $('#change2').text(num2);
+
+                    function change2(){
+                        add = String(div % 2);
+                        if(num2) {
+                            num2 = add + num2;
+                        } else {
+                            num2 = add;
+                        }
+                        if(Math.floor(div / 2) !== 0) {
+                            div = Math.floor(div / 2);
+                            change2();
+                        }
+                    }
+
+                    // 16進数へ変換
+                    div = num10;
+                    let num16;
+                    change16();
+                    $('#change16').text(num16);
+
+                    function change16(){
+                        if(div % 16 >= 0 && div % 16 < 10 ) {
+                            add = String(div % 16)
+                        } else if (div % 16 === 10) {
+                            add = 'A';
+                        } else if (div % 16 === 11) {
+                            add = 'B';
+                        } else if (div % 16 === 12) {
+                            add = 'C';
+                        } else if (div % 16 === 13) {
+                            add = 'D';
+                        } else if (div % 16 === 14) {
+                            add = 'E';
+                        } else if (div % 16 === 15) {
+                            add = 'F';
+                        }
+
+                        if(num16) {
+                            num16 = add + num16
+                        } else {
+                            num16 = add;
+                        }
+                        if (Math.floor(div / 16) !== 0) {
+                            div = Math.floor(div / 16);
+                            change16();
+                        }
+                    }
+                })
+            })
+        </script>
+    </body>
+</html>
