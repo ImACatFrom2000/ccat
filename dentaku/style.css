@@ -1,21 +1,32 @@
 @charset "utf-8";
-
 body {
+    background-color: #EAEFEF;
+    max-width: 1260px;
+    margin: 50px auto;  /*全体上下に50px, 左右中央寄せ*/
+    padding: 0 20px;    /*全体左右に20px*/ 
+    font-family: sans-serif;
     font-size: 32px;
-    width: 100%;
+    line-height: 1.4;
+    letter-spacing: 0.1em;
+    color: #333446;
 }
-
+h1 {
+    font-size: 32px;
+    font-weight: bold;
+}
 #answer {
     width: 500px;
     height: 40px;
-    background-color: gray;
+    background-color: #7F8CAA;
     margin-bottom: 20px;
     padding: 8px;
-    color: white;
+    color: #EAEFEF;
     text-align: end;
 }
-
 button {
     font-size: 32px;
     width: 50px;
+}
+small {
+    font-size: 16px;
 }
