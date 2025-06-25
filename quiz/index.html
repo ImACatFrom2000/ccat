@@ -2,19 +2,17 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
+        <link rel="stylesheet" href="style.css">
         <title>ポケモンクイズ</title>
-        <style>
-            .correct { color: red;}
-            .false {text-decoration: line-through;}
-        </style>
     </head>
     <body>
         <header>
             <h1>ポケモンクイズ</h1>
         </header>
+        <button id="start">ゲームを始める</button>
         <main>
             <div class="question">
-                <p>以下の条件に当てはまるポケモンは何？</p>
+                <p><span class="numQ"></span>以下の条件に当てはまるポケモンは何？</p>
                 <p>タイプ：<span id="type"></span></p>
                 <p>特性：<span id="ability"></span></p>
                 <p>種族値：<span id="status"></span></p>
@@ -24,54 +22,105 @@
                 <ul id="choices"></ul>
             </div>
             <p id="answer"></p>
+            <button id="next">次の問題</button>
         </main>
+        <p id="result">正解数は<span id="score"></span>です。</p>
+        <footer>
+            <small>
+                ©2025 Pokémon. ©1995-2025 Nintendo/Creatures Inc. /GAME FREAK inc.<br>
+                ポケットモンスター・ポケモン・Pokémonは任天堂・クリーチャーズ・ゲームフリークの登録商標です。
+            </small>
+        </footer>
     </body>
-    <script src="../dentaku/jquery-3.7.1.min.js"></script>
+    <script src="../scripts/jquery-3.7.1.min.js"></script>
     <script>
         'use strict';
 
         $(document).ready(function(){
             $.getJSON('data.json')
                 .done(function(pokemon) {
-                    //選択肢を4つ作る
-                    let copy = pokemon;
-                    let choices = [];
-                    let i;
-                    for(i=0; i<4; i++){
-                        const select = Math.floor(Math.random() * copy.length);
-                        choices.push(copy[select]);
-                        copy.splice(select, 1);
-                    }
-                    for(i=0; i<4; i++){
-                        document.getElementById('choices').insertAdjacentHTML('beforeend', `<li>${choices[i].name}</li>`);
+                    //ゲームを始める
+                    $('#start').on('click', function(){
+                        console.log('ゲームスタート')
+                        $('main').attr('style', 'display: block');
+                        $('#start').remove();
+                        game();
+                    })
+
+                    async function game(){
+                        let i;
+                        let score = 0;
+                        for(i=0; i<5; i++){
+                            $('.numQ').text(`第${i+1}問: `)
+                            await set(i);
+                            console.log(`第${i + 1}問終了`);
+                        }
+                        console.log('5セット終了');
+                        result();
                     }
 
-                    //選択肢のうち一つを正解にする
-                    const correct = Math.floor(Math.random() * choices.length);
-                    $(`#choices li:nth-child(${correct + 1})`).attr('id','correct')
-                    
-                    //正解のタイプ等を問題文に出力
-                    $('#type').text(choices[correct].type);
-                    $('#ability').text(choices[correct].ability);
-                    $('#status').text(choices[correct].status);
-                    
-                    //選択肢をクリックしたら
-                    $('#choices li').on('click', function(){
-                        //正誤を出力
-                        if($(this).attr('id') === 'correct'){
-                            $('#answer').text('正解！')
-                        } else {
-                            $('#answer').text(`不正解`)
-                        }
-                        //選択肢の見た目を変える
+                    function set(numQ, score){
+                        return new Promise(resolve => {
+                        //リセットする
+                        $('#choices li').remove();
+                        $('#answer').empty();
+                        $('#next').attr('style', '');
+
+                        //選択肢を4つ作る
+                        let copy = pokemon;
+                        let choices = [];
+                        let i;
                         for(i=0; i<4; i++){
-                            if($(`#choices li:nth-child(${i+1})`).attr('id') === 'correct'){
-                                $(`#choices li:nth-child(${i+1})`).addClass('correct');
-                            } else {
-                                $(`#choices li:nth-child(${i+1})`).addClass('false');
-                            }
+                            const select = Math.floor(Math.random() * copy.length);
+                            choices.push(copy[select]);
+                            copy.splice(select, 1);
                         }
-                    })
+                        for(i=0; i<4; i++){
+                            document.getElementById('choices').insertAdjacentHTML('beforeend', `<li>${choices[i].name}</li>`);
+                        }
+
+                        //選択肢のうち一つを正解にする
+                        const correct = Math.floor(Math.random() * choices.length);
+                        $(`#choices li:nth-child(${correct + 1})`).attr('id','correct')
+                        
+                        //正解のタイプ等を問題文に出力
+                        $('#type').text(choices[correct].type);
+                        $('#ability').text(choices[correct].ability);
+                        $('#status').text(choices[correct].status);
+
+                        //選択肢をクリックしたら
+                        $('#choices li').on('click', function(){
+                            //正誤を出力
+                            if($(this).attr('id') === 'correct'){
+                                $('#answer').text('正解！')
+                            } else {
+                                $('#answer').text(`不正解`)
+                            }
+                            //選択肢の見た目を変える
+                            let i;
+                            for(i=0; i<4; i++){
+                                if($(`#choices li:nth-child(${i+1})`).attr('id') === 'correct'){
+                                    $(`#choices li:nth-child(${i+1})`).addClass('correct');
+                                } else {
+                                    $(`#choices li:nth-child(${i+1})`).addClass('false');
+                                }
+                            }
+                            //次の問題へ進む
+                            $('#next').attr('style', 'display: block');
+                            if(numQ === 4){
+                                $('#next').text('結果を見る');
+                            }
+                                $('#next').on('click', function(){
+                                    resolve();
+                                })
+                            })
+                        })
+                    }
+                    function result(){
+                        $('main').attr('style', 'display: none');
+                        $('#result').attr('style', 'display: block');
+                        $('#score').text(``);
+                    }
                 })
                 .fail(function(jqxhr, textStatus, error) {
                     // 失敗時：エラーハンドリング
