@@ -9,7 +9,11 @@
         <header>
             <h1>ポケモンクイズ</h1>
         </header>
-        <button id="start">ゲームを始める</button>
+        <div id="start">
+            <p>タイプ・性格・種族値から何のポケモンか当ててね。全10問。</p>
+            <button id="gameStart">ゲームを始める</button>
+        </div>
+        
         <main>
             <div class="question">
                 <p><span class="numQ"></span>以下の条件に当てはまるポケモンは何？</p>
@@ -24,7 +28,7 @@
             <p id="answer"></p>
             <button id="next">次の問題</button>
         </main>
-        <p id="result">正解数は<span id="score"></span>です。</p>
+        <p id="result"></p>
         <footer>
             <small>
                 ©2025 Pokémon. ©1995-2025 Nintendo/Creatures Inc. /GAME FREAK inc.<br>
@@ -32,7 +36,8 @@
             </small>
         </footer>
     </body>
-    <script src="../scripts/jquery-3.7.1.min.js"></script>
+    <!-- <script src="../scripts/jquery-3.7.1.min.js"></script> -->
+    <script src="../dentaku/jquery-3.7.1.min.js"></script>
     <script>
         'use strict';
 
@@ -40,7 +45,7 @@
             $.getJSON('data.json')
                 .done(function(pokemon) {
                     //ゲームを始める
-                    $('#start').on('click', function(){
+                    $('#gameStart').on('click', function(){
                         console.log('ゲームスタート')
                         $('main').attr('style', 'display: block');
                         $('#start').remove();
@@ -50,16 +55,19 @@
                     async function game(){
                         let i;
                         let score = 0;
-                        for(i=0; i<5; i++){
+                        for(i=0; i<10; i++){
                             $('.numQ').text(`第${i+1}問: `)
-                            await set(i);
-                            console.log(`第${i + 1}問終了`);
+                            const isCorrect = await turn(i);
+                            if(isCorrect){
+                                score++;
+                            }
+                            console.log(`現在の得点：${score}`);
                         }
-                        console.log('5セット終了');
-                        result();
+                        console.log('10問終了');
+                        result(score, i);
                     }
 
-                    function set(numQ, score){
+                    function turn(numQ){
                         return new Promise(resolve => {
                         //リセットする
                         $('#choices li').remove();
@@ -90,9 +98,11 @@
 
                         //選択肢をクリックしたら
                         $('#choices li').on('click', function(){
+                            let answeredCorrectly = false;
                             //正誤を出力
                             if($(this).attr('id') === 'correct'){
-                                $('#answer').text('正解！')
+                                $('#answer').text('正解！');
+                                answeredCorrectly = true;
                             } else {
                                 $('#answer').text(`不正解`)
                             }
@@ -111,15 +121,19 @@
                                 $('#next').text('結果を見る');
                             }
                                 $('#next').on('click', function(){
-                                    resolve();
+                                    resolve(answeredCorrectly);
                                 })
                             })
                         })
                     }
-                    function result(){
+                    function result(finalScore, totalQ){
                         $('main').attr('style', 'display: none');
                         $('#result').attr('style', 'display: block');
-                        $('#score').text(``);
+                        if(finalScore === totalQ) {
+                            $('#result').text('全問正解おめでとう！');
+                        } else {
+                            $('#result').text(`あなたの正解数は...${totalQ}問中 ${finalScore}問`);
+                        }
                     }
                 })
                 .fail(function(jqxhr, textStatus, error) {
