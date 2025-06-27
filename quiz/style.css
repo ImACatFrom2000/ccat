@@ -1,15 +1,29 @@
 @charset "utf-8";
 
+body {
+    background-color: #EAEFEF;
+    max-width: 1260px;
+    margin: 50px auto;  /*全体上下に50px, 左右中央寄せ*/
+    padding: 0 20px;    /*全体左右に20px*/ 
+    font-family: sans-serif;
+    font-size: 16px;
+    line-height: 1.4;
+    letter-spacing: 0.1em;
+    color: #333446;
+}
+
 main,
 #next,
 #result {
     display: none;
 }
-
 footer {
     position: fixed; bottom: 1em; left: 1em;
 }
+#choices li:hover{
+    color: #7F8CAA;
+}
 
 /* 回答時のスタイル変更 */
-.correct { color: red;}
-.false {text-decoration: line-through;}
+.correct, #choices .correct:hover{ color: red;}
+.false, #choices .false:hover{text-decoration: line-through; color: #333446;}

@@ -10,7 +10,7 @@
             <h1>ポケモンクイズ</h1>
         </header>
         <div id="start">
-            <p>タイプ・性格・種族値から何のポケモンか当ててね。全10問。</p>
+            <p>タイプ・性格・種族値から何のポケモンか当ててね。全10問</p>
             <button id="gameStart">ゲームを始める</button>
         </div>
         
@@ -28,27 +28,36 @@
             <p id="answer"></p>
             <button id="next">次の問題</button>
         </main>
-        <p id="result"></p>
+        <div id="result">
+            <p id="score"></p>
+            <button id="playAgain">もう一度遊ぶ</button>
+        </div>
         <footer>
             <small>
+                当サイトはファンサイトです。
                 ©2025 Pokémon. ©1995-2025 Nintendo/Creatures Inc. /GAME FREAK inc.<br>
                 ポケットモンスター・ポケモン・Pokémonは任天堂・クリーチャーズ・ゲームフリークの登録商標です。
             </small>
         </footer>
     </body>
-    <!-- <script src="../scripts/jquery-3.7.1.min.js"></script> -->
-    <script src="../dentaku/jquery-3.7.1.min.js"></script>
+    <script src="../scripts/jquery-3.7.1.min.js"></script>
+    <!-- <script src="../dentaku/jquery-3.7.1.min.js"></script> -->
     <script>
         'use strict';
 
         $(document).ready(function(){
-            $.getJSON('data.json')
+            $.ajax({url: 'data.json', dataType: 'json'})
                 .done(function(pokemon) {
                     //ゲームを始める
                     $('#gameStart').on('click', function(){
                         console.log('ゲームスタート')
                         $('main').attr('style', 'display: block');
                         $('#start').remove();
+                        game();
+                    })
+                    $('#playAgain').on('click', function(){
+                        $('#result').attr('style', 'display: none');
+                        $('main').attr('style', 'display: block');
                         game();
                     })
 
@@ -63,7 +72,6 @@
                             }
                             console.log(`現在の得点：${score}`);
                         }
-                        console.log('10問終了');
                         result(score, i);
                     }
 
@@ -75,13 +83,12 @@
                         $('#next').attr('style', '');
 
                         //選択肢を4つ作る
-                        let copy = pokemon;
                         let choices = [];
                         let i;
                         for(i=0; i<4; i++){
-                            const select = Math.floor(Math.random() * copy.length);
-                            choices.push(copy[select]);
-                            copy.splice(select, 1);
+                            const select = Math.floor(Math.random() * pokemon.length);
+                            choices.push(pokemon[select]);
+                            pokemon.splice(select, 1);
                         }
                         for(i=0; i<4; i++){
                             document.getElementById('choices').insertAdjacentHTML('beforeend', `<li>${choices[i].name}</li>`);
@@ -95,6 +102,11 @@
                         $('#type').text(choices[correct].type);
                         $('#ability').text(choices[correct].ability);
                         $('#status').text(choices[correct].status);
+
+                        //選択肢をpokemonに戻す
+                        for(i=0; i<4; i++){
+                            pokemon.push(choices[i]);
+                        }
 
                         //選択肢をクリックしたら
                         $('#choices li').on('click', function(){
@@ -130,9 +142,9 @@
                         $('main').attr('style', 'display: none');
                         $('#result').attr('style', 'display: block');
                         if(finalScore === totalQ) {
-                            $('#result').text('全問正解おめでとう！');
+                            $('#score').text('全問正解おめでとう！');
                         } else {
-                            $('#result').text(`あなたの正解数は...${totalQ}問中 ${finalScore}問`);
+                            $('#score').text(`あなたの正解数は...${totalQ}問中 ${finalScore}問`);
                         }
                     }
                 })
