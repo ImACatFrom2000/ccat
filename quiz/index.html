@@ -20,6 +20,7 @@
                 <p>タイプ：<span id="type"></span></p>
                 <p>特性：<span id="ability"></span></p>
                 <p>種族値：<span id="status"></span></p>
+                <p>説明：<span id="explanation"></span></p>
             </div>
             <div>
                 <p>選択肢</p>
@@ -58,6 +59,7 @@
                     $('#playAgain').on('click', function(){
                         $('#result').attr('style', 'display: none');
                         $('main').attr('style', 'display: block');
+                        $('#next').text('次の問題');
                         game();
                     })
 
@@ -81,6 +83,8 @@
                         $('#choices li').remove();
                         $('#answer').empty();
                         $('#next').attr('style', '');
+                        $('#explanation').empty();
+                        $('#explanation').append('<button>ヒントを見る</button>')
 
                         //選択肢を4つ作る
                         let choices = [];
@@ -108,9 +112,16 @@
                             pokemon.push(choices[i]);
                         }
 
+                        //ヒントを見る
+                        $('#explanation button').on('click', function(){
+                            $(this).remove();
+                            $('#explanation').text(choices[correct].explanation);
+                        })
+
                         //選択肢をクリックしたら
                         $('#choices li').on('click', function(){
                             let answeredCorrectly = false;
+                            $('#explanation').text(choices[correct].explanation);
                             //正誤を出力
                             if($(this).attr('id') === 'correct'){
                                 $('#answer').text('正解！');
@@ -129,7 +140,7 @@
                             }
                             //次の問題へ進む
                             $('#next').attr('style', 'display: block');
-                            if(numQ === 4){
+                            if(numQ === 9){
                                 $('#next').text('結果を見る');
                             }
                                 $('#next').on('click', function(){
@@ -144,7 +155,7 @@
                         if(finalScore === totalQ) {
                             $('#score').text('全問正解おめでとう！');
                         } else {
-                            $('#score').text(`あなたの正解数は...${totalQ}問中 ${finalScore}問`);
+                            $('#score').text(`あなたの正解数は...全${totalQ}問中 ${finalScore}問`);
                         }
                     }
                 })
