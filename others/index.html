@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <title>JavaScriptの練習</title>
+    </head>
+    <body>
+        <header>
+            <h1>JavaScriptの練習</h1>
+        </header>
+        <main>
+            <div class="fibonacci">
+                <h2>フィボナッチ数列</h2>
+                <p>半角数字を入力してください</p>
+                <form>
+                    <input type="number" style="border: 1px solid black;">
+                    <input type="submit" value="変換">
+                </form>
+                <p id="output"></p>
+            </div>
+            <div class="reverse">
+                <h2>文字列の反転</h2>
+                <p>文字列を入力してください</p>
+                <form>
+                    <input type="text" style="border: 1px solid black;">
+                    <input type="submit" value="変換">
+                </form>
+                <p id="output"></p>
+            </div>
+            <div class="max-min">
+                <h2>配列内の最大値と最小値の探索</h2>
+                <p>複数の数字をカンマ区切りで入力してください。例) 1,2,3,4</p>
+                <form>
+                    <input type="text" style="border: 1px solid black;">
+                    <input type="submit" value="変換">
+                </form>
+                <p id="output"></p>
+            </div>
+            <div class="duplication">
+                <h2>重複した要素の削除</h2>
+                <p>複数の数字をカンマ区切りで入力してください。例)1,2,3,4</p>
+                <form>
+                    <input type="text" style="border: 1px solid black;">
+                    <input type="submit" value="変換">
+                </form>
+                <p id="output"></p>
+            </div>
+        </main>
+    </body>
+    <script src="../dentaku/jquery-3.7.1.min.js"></script>
+    <script>
+        'use strict';
+
+        $(document).ready(function(){
+            $('.fibonacci input[type="submit"]').on('click', function(){
+                event.preventDefault();
+                $('.fibonacci #output').empty();
+                const num = document.querySelector('.fibonacci input[type="number"]').value;
+                
+                let pre = 0;
+                let fibo = 1;
+                let next;
+                while(num > fibo){
+                    // console.log(fibo);
+                    $('.fibonacci #output').append(`${fibo} `);
+                    next = pre + fibo;
+                    pre = fibo;
+                    fibo = next;
+                }
+            })
+            $('.reverse input[type="submit"]').on('click', function(){
+                event.preventDefault();
+                $('.reverse #output').empty();
+                const text = document.querySelector('.reverse input[type="text"]').value;
+
+                const array = text.split('');
+                const numChar = array.length;
+                let i;
+                for(i=0; i<numChar; i++){
+                    $('.reverse #output').append(`${array[(numChar - 1) - i]} `);
+                }
+            })
+            $('.max-min input[type="submit"]').on('click', function(){
+                event.preventDefault();
+                $('.max-min #output').empty();
+                const str = document.querySelector('.max-min input[type="text"]').value;
+
+                const array = str.split(',')
+                const max = Math.max(...array);
+                const min = Math.min(...array);
+                $('.max-min #output').append(`最大値: ${max}, 最小値: ${min}`);
+            })
+            $('.duplication input[type="submit"]').on('click', function(){
+                event.preventDefault();
+                $('.duplication #output').empty();
+                const str = document.querySelector('.duplication input[type="text"]').value;
+
+                const array = str.split(',');
+                const length = array.length;
+                let i;
+                let j;
+                for(i=0; i<length - 1; i++){
+                    for(j=i + 1; j<length; j++){
+                        if(array[i] === array[j]){
+                            // console.log(`array[${j}]を空白にしました`)
+                            array[j] = '';
+                        }
+                    }
+                }
+                for(i=0; i<length; i++){
+                    if(array[i]){
+                        $('.duplication #output').append(`${array[i]}, `);
+                    }
+                }
+            })
+            
+        })
+    </script>
+</html>
