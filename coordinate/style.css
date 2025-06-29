@@ -1,0 +1,21 @@
+@charset "utf-8";
+
+main {
+    width: 1000px;
+    margin: 0 auto;
+}
+
+#playArea {
+    background-color: #000;
+    height: 500px;
+    position: relative;
+}
+
+#correct {
+    display: none;
+    width: 20px;
+    height: 20px;
+    background-color: yellow;
+    border-radius: 50%;
+    position: absolute;
+}

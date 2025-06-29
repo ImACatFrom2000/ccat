@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="style.css">
+        <title>座標当てゲーム</title>
+    </head>
+    <body>
+        <header>
+            <h1>座標当てゲーム</h1>
+        </header>
+        <main>
+            <div id="target"></div>
+            <div id="playArea"><span id="correct"></span></div>
+            <div id="result"></div>
+        </main>
+        <script src="jquery-3.7.1.min.js"></script>
+        <script>
+            'use strict';
+
+            $(document).ready(function(){
+                let targetX = Math.floor(Math.random()* 1001);
+                let targetY = Math.floor(Math.random()* 501);
+                let answeredX;
+                let answeredY;
+                $('#target').text(`(${targetX}, ${targetY})はどこ？`);
+
+                $('#playArea').on('click', function(){
+                    logPosition(event);
+                    $('#correct').attr('style', `display: block; left: ${targetX - 10}px; top: ${targetY - 10}px`);
+                    const difference = Math.sqrt((answeredX - targetX) **2 + (answeredY - targetY) **2)
+                    let msg;
+                    if (difference < 10){
+                        msg = '凄すぎ！';
+                    } else if(difference < 50){
+                        msg = 'すごい！';
+                    } else if(difference < 200) {
+                        msg = 'まずまず';
+                    } else {
+                        msg = 'もっと頑張りましょう'
+                    }
+                    $('#result').text(msg);
+                })
+
+                function logPosition(event){
+                    answeredX = event.offsetX
+                    answeredY = event.offsetY;
+                    console.log(`それは(${answeredX}, ${answeredY})`);
+                }
+            })
+        </script>
+    </body>
+</html>
