@@ -10,7 +10,7 @@
             <h1>ポケモンクイズ</h1>
         </header>
         <div id="start">
-            <p>タイプ・性格・種族値から何のポケモンか当ててね。全10問</p>
+            <p>タイプ・性格・種族値から何のポケモンか当ててね。<br>全10問。ヒントを見ずに正解で2点、ヒントを見て正解なら1点だよ。</p>
             <button id="gameStart">ゲームを始める</button>
         </div>
         
@@ -41,8 +41,8 @@
             </small>
         </footer>
     </body>
-    <script src="../scripts/jquery-3.7.1.min.js"></script>
-    <!-- <script src="../dentaku/jquery-3.7.1.min.js"></script> -->
+    <!-- <script src="../scripts/jquery-3.7.1.min.js"></script> -->
+    <script src="../dentaku/jquery-3.7.1.min.js"></script>
     <script>
         'use strict';
 
@@ -69,8 +69,12 @@
                         for(i=0; i<10; i++){
                             $('.numQ').text(`第${i+1}問: `)
                             const isCorrect = await turn(i);
-                            if(isCorrect){
-                                score++;
+                            if(isCorrect[0]){
+                                if(isCorrect[1]){
+                                    score++;
+                                } else {
+                                    score = score + 2;
+                                }
                             }
                             console.log(`現在の得点：${score}`);
                         }
@@ -113,9 +117,11 @@
                         }
 
                         //ヒントを見る
+                        let hint = false;
                         $('#explanation button').on('click', function(){
                             $(this).remove();
                             $('#explanation').text(choices[correct].explanation);
+                            hint = true;
                         })
 
                         //選択肢をクリックしたら
@@ -144,7 +150,7 @@
                                 $('#next').text('結果を見る');
                             }
                                 $('#next').on('click', function(){
-                                    resolve(answeredCorrectly);
+                                    resolve([answeredCorrectly, hint]);
                                 })
                             })
                         })
@@ -152,10 +158,10 @@
                     function result(finalScore, totalQ){
                         $('main').attr('style', 'display: none');
                         $('#result').attr('style', 'display: block');
-                        if(finalScore === totalQ) {
-                            $('#score').text('全問正解おめでとう！');
+                        if(finalScore === totalQ * 2) {
+                            $('#score').text('満点！おめでとう！');
                         } else {
-                            $('#score').text(`あなたの正解数は...全${totalQ}問中 ${finalScore}問`);
+                            $('#score').text(`あなたのスコアは...${totalQ * 2}点満点中 ${finalScore}点`);
                         }
                     }
                 })
