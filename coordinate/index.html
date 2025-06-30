@@ -8,6 +8,7 @@
     <body>
         <header>
             <h1>座標当てゲーム</h1>
+            <p>1000px × 500pxのエリアからお題の座標をクリックしよう。左上が(0,0)です。</p>
         </header>
         <main>
             <div id="target"></div>
@@ -19,25 +20,29 @@
             'use strict';
 
             $(document).ready(function(){
-                let targetX = Math.floor(Math.random()* 1001);
-                let targetY = Math.floor(Math.random()* 501);
+                //正解の座標を設定
+                let targetX = Math.floor(Math.random()* (980+1)) + 10;     //10~990
+                let targetY = Math.floor(Math.random()* (480+1)) + 10;     //10~490
+
                 let answeredX;
                 let answeredY;
                 $('#target').text(`(${targetX}, ${targetY})はどこ？`);
 
                 $('#playArea').on('click', function(){
                     logPosition(event);
-                    $('#correct').attr('style', `display: block; left: ${targetX - 10}px; top: ${targetY - 10}px`);
-                    const difference = Math.sqrt((answeredX - targetX) **2 + (answeredY - targetY) **2)
+                    $('#correct').attr('style', `display: block; left: ${targetX-10}px; top: ${targetY-10}px`);
+                    const difference = Math.sqrt((answeredX - targetX) **2 + (answeredY - targetY) **2);
                     let msg;
                     if (difference < 10){
                         msg = '凄すぎ！';
-                    } else if(difference < 50){
+                    } else if(difference < 30){
                         msg = 'すごい！';
+                    } else if(difference < 100){
+                        msg = 'いい感じ';
                     } else if(difference < 200) {
                         msg = 'まずまず';
                     } else {
-                        msg = 'もっと頑張りましょう'
+                        msg = '全然違うぞ！'
                     }
                     $('#result').text(msg);
                 })
@@ -45,7 +50,6 @@
                 function logPosition(event){
                     answeredX = event.offsetX
                     answeredY = event.offsetY;
-                    console.log(`それは(${answeredX}, ${answeredY})`);
                 }
             })
         </script>
