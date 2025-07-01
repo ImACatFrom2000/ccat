@@ -18,7 +18,8 @@ main,
     display: none;
 }
 footer {
-    position: fixed; bottom: 1em; left: 1em;
+    position: fixed;
+    bottom: 1em; left: 1em;
 }
 #choices li:hover{
     color: #7F8CAA;
@@ -27,3 +28,10 @@ footer {
 /* 回答時のスタイル変更 */
 .correct, #choices .correct:hover{ color: red;}
 .false, #choices .false:hover{text-decoration: line-through; color: #333446;}
+
+@media screen and (max-width:640px){
+    footer {
+        font-size: 12px;
+        position: static;
+    }
+}
