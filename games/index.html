@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="style.css">
+        <title>ゲーム</title>
+    </head>
+    <body>
+        <main>
+            <div class="playArea">
+                <div id="lane1" class="lane"><img src="fruit_apple.png"></div>
+                <div id="lane2" class="lane"><img src="fruit_apple.png"></div>
+                <div id="lane3" class="lane"><img src="fruit_apple.png"></div>
+                <div id="lane4" class="lane"><img src="fruit_apple.png"></div>
+                <div id="lane5" class="lane"><img src="fruit_apple.png"></div>
+                <div id="player"></div>
+            </div>
+        </main>
+        <script src="../scripts/jquery-3.7.1.min.js"></script>
+        <script>
+            'use strict';
+
+            $(document).ready(function(){
+                console.log('READY');
+                let x = 0;
+                let y = 0;
+                $(document).keydown(function(e){
+                    switch (e.keyCode){
+                        case 87:            //W(上)
+                            keydownUp();
+                            break;
+                        case 65:            //A(左)
+                            keydownLeft();
+                            break;
+                        case 83:            //S(下)
+                            keydownDown();
+                            break;
+                        case 68:            //D(右)
+                            keydownRight();
+                            break;
+                        default:        
+                            console.log('キーが押されました');
+                            break;
+                    }
+                    $('#player').attr('style', `left: ${x*10}px; top: ${y*10}px`);
+                })
+                function keydownLeft(){
+                    if(x>0){
+                        x--;
+                    }
+                }
+                function keydownRight(){
+                    if(x<98){
+                        x++;
+                    }
+                }
+                function keydownUp(){
+                    if(y>0){
+                        y--;
+                    }
+                }
+                function keydownDown(){
+                    if(y<48){
+                        y++;
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>
