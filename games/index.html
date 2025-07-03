@@ -24,36 +24,45 @@
                 console.log('READY');
                 let playerX = 0;
                 const playerY = 450;
-                
-                fallFruits();
-                setInterval(fallFruits, 2000);
+                const playAreaHeight = 500;
+                const playAreaWidth = 1000;
+                const fruitsSize = 40
+                const playerSize = 50;
+                const numFruits = 5;
+                const fallTime = 2000;
+                const fallSpeed = (playAreaHeight + fruitsSize) * (10/fallTime)  //540px(画面の高さ+りんご)を2000ミリ秒で落ちる。10秒ごとに実行
 
-                //540px(画面の高さ+りんご)を2000ミリ秒で落ちる。10秒ごとに実行
-                //540*(10/2000)=2.7px/10ms
+                fallFruits();
+                setInterval(fallFruits, fallTime);
 
                 function fallFruits(){
-                    const num = Math.floor(Math.random()*5)+1;
-                    const fruitsX = 200 * (num-1) + 80;
-                    $(`#lane${num} img`).addClass('falling');
+                    const numFall = Math.floor(Math.random()*numFruits)+1;
+                    const fruitsX = (playAreaWidth/numFruits)*(numFall-1) + (playAreaWidth/numFruits)/2 - playerSize/2;
+                    $(`#lane${numFall} img`).addClass('falling');
                     let count=0;
-                    const maxCount = 200;
                     const intervalTime = 10;
+                    const maxCount = fallTime/intervalTime;     //200回
 
                     const intervalId = setInterval(() => {
                         let fruitsY= falling(count);
+                        if(playerY <= fruitsY) {
+                            if(Math.abs(playerX-fruitsX) <= 50) {   //プレイヤーとりんごのX距離が50以下なら
+                                console.log('CATCH!')
+                            }
+                        }
                         count++;
 
                         if (count >= maxCount) {
                             clearInterval(intervalId);
                             $('.falling').attr('style', ``);
-                            $(`#lane${num} img`).removeClass('falling');
+                            $(`#lane${numFall} img`).removeClass('falling');
                         }
                     }, intervalTime);
                 }
 
                 function falling(i){
-                    $('.falling').attr('style', `top: ${2.7*i-40}px`);
-                    return 2.7*i-40;
+                    $('.falling').attr('style', `top: ${fallSpeed*i-fruitsSize}px`);
+                    return fallSpeed*i-fruitsSize;
                 }
 
                 $(document).keydown(function(e){
@@ -64,19 +73,19 @@
                         case 68:            //D(右)
                             keydownRight();
                             break;
-                        default:        
+                        default:      
                             break;
                     }
-                    $('#player').attr('style', `left: ${playerX*10}px;`);
+                    $('#player').attr('style', `left: ${playerX}px;`);
                 })
                 function keydownLeft(){
                     if(playerX>0){
-                        playerX--;
+                        playerX= playerX -10;
                     }
                 }
                 function keydownRight(){
-                    if(playerX<95){
-                        playerX++;
+                    if(playerX<950){
+                        playerX = playerX + 10;
                     }
                 }
             })
