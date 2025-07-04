@@ -15,6 +15,7 @@
                 <div id="lane5" class="lane"><img src="fruit_apple.png"></div>
                 <div id="player"></div>
             </div>
+            <div class="result"></div>
         </main>
         <script src="../scripts/jquery-3.7.1.min.js"></script>
         <script>
@@ -30,39 +31,42 @@
                 const playerSize = 50;
                 const numFruits = 5;
                 const fallTime = 2000;
-                const fallSpeed = (playAreaHeight + fruitsSize) * (10/fallTime)  //540px(画面の高さ+りんご)を2000ミリ秒で落ちる。10秒ごとに実行
+                const fallSpeed = (playAreaHeight + fruitsSize) * (20/fallTime)  //540px(画面の高さ+りんご)を2000ミリ秒で落ちる。10秒ごとに実行
 
-                fallFruits();
                 setInterval(fallFruits, fallTime);
 
                 function fallFruits(){
                     const numFall = Math.floor(Math.random()*numFruits)+1;
+                    console.log(`numFall : ${numFall}`)
                     const fruitsX = (playAreaWidth/numFruits)*(numFall-1) + (playAreaWidth/numFruits)/2 - playerSize/2;
                     $(`#lane${numFall} img`).addClass('falling');
                     let count=0;
-                    const intervalTime = 10;
-                    const maxCount = fallTime/intervalTime;     //200回
+                    const intervalTime = 20;
+                    const maxCount = fallTime/intervalTime;
 
                     const intervalId = setInterval(() => {
-                        let fruitsY= falling(count);
+                        let fruitsY= fallSpeed*count-fruitsSize;
+                        let touchFruits;
+                        $('.falling').attr('style', `top: ${fruitsY}px`);
                         if(playerY <= fruitsY) {
                             if(Math.abs(playerX-fruitsX) <= 50) {   //プレイヤーとりんごのX距離が50以下なら
-                                console.log('CATCH!')
+                                touchFruits = true;
                             }
                         }
                         count++;
 
-                        if (count >= maxCount) {
+                        if (count >= (maxCount - 1)) {
                             clearInterval(intervalId);
                             $('.falling').attr('style', ``);
                             $(`#lane${numFall} img`).removeClass('falling');
+                            if(touchFruits) {
+                                $('.result').append('〇, ')
+                            } else {
+                                $('.result').append('×, ')
+                            }
                         }
+                        
                     }, intervalTime);
-                }
-
-                function falling(i){
-                    $('.falling').attr('style', `top: ${fallSpeed*i-fruitsSize}px`);
-                    return fallSpeed*i-fruitsSize;
                 }
 
                 $(document).keydown(function(e){
@@ -80,12 +84,12 @@
                 })
                 function keydownLeft(){
                     if(playerX>0){
-                        playerX= playerX -10;
+                        playerX= playerX -15;
                     }
                 }
                 function keydownRight(){
                     if(playerX<950){
-                        playerX = playerX + 10;
+                        playerX = playerX + 15;
                     }
                 }
             })
