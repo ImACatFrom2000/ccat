@@ -1,5 +1,17 @@
 @charset "utf-8";
 
+body {
+    background-color: #EAEFEF;
+    max-width: 1260px;
+    margin: 50px auto;  /*全体上下に50px, 左右中央寄せ*/
+    padding: 0 20px;    /*全体左右に20px*/ 
+    font-family: sans-serif;
+    font-size: 16px;
+    line-height: 1.4;
+    letter-spacing: 0.1em;
+    color: #333446;
+}
+
 main {
     width: 1000px;
     margin: 0 auto;
@@ -18,4 +30,19 @@ main {
     background-color: yellow;
     border-radius: 50%;
     position: absolute;
+}
+
+.message {
+    display: flex;
+    text-align: center;
+    margin-bottom: 0.5em;
+}
+#target, #result {
+    width: 50%;
+}
+#result {
+    color: red;
+}
+footer {
+    text-align: center;
 }
