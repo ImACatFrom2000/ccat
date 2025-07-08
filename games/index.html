@@ -23,6 +23,7 @@
 
             $(document).ready(function(){
                 console.log('READY');
+                let miss = 0;
                 let playerX = 0;
                 const playerY = 450;
                 const playAreaHeight = 500;
@@ -33,9 +34,15 @@
                 const fallTime = 2000;
                 const fallSpeed = (playAreaHeight + fruitsSize) * (20/fallTime)  //540px(画面の高さ+りんご)を2000ミリ秒で落ちる。10秒ごとに実行
 
-                setInterval(fallFruits, fallTime);
+                fallFruits();
 
                 function fallFruits(){
+                    if(miss<5){
+                        setTimeout(fallFruits, fallTime);
+                    } else {
+                        console.log('ゲーム終了');
+                        return;
+                    }
                     const numFall = Math.floor(Math.random()*numFruits)+1;
                     console.log(`numFall : ${numFall}`)
                     const fruitsX = (playAreaWidth/numFruits)*(numFall-1) + (playAreaWidth/numFruits)/2 - playerSize/2;
@@ -59,28 +66,31 @@
                             clearInterval(intervalId);
                             $('.falling').attr('style', ``);
                             $(`#lane${numFall} img`).removeClass('falling');
-                            if(touchFruits) {
-                                $('.result').append('〇, ')
-                            } else {
-                                $('.result').append('×, ')
+                            if(!touchFruits) {
+                                miss++;
+                                $('.result').text(miss);
                             }
                         }
                         
                     }, intervalTime);
+
+                    
                 }
 
                 $(document).keydown(function(e){
-                    switch (e.keyCode){
-                        case 65:            //A(左)
-                            keydownLeft();
-                            break;
-                        case 68:            //D(右)
-                            keydownRight();
-                            break;
-                        default:      
-                            break;
+                    if(miss<5) {
+                        switch (e.keyCode){
+                            case 65:            //A(左)
+                                keydownLeft();
+                                break;
+                            case 68:            //D(右)
+                                keydownRight();
+                                break;
+                            default:      
+                                break;
+                        }
+                        $('#player').attr('style', `left: ${playerX}px;`);
                     }
-                    $('#player').attr('style', `left: ${playerX}px;`);
                 })
                 function keydownLeft(){
                     if(playerX>0){
