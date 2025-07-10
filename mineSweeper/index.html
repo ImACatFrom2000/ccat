@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="style.css">
+        <title>マインスイーパ</title>
+    </head>
+    <body>
+        <header>
+            <h1>マインスイーパ</h1>
+        </header>
+        <main>
+            <button id="flag"><img src="flag_white_sankaku1.png"></button>
+            <div id="playArea"></div>
+        </main>
+        <script src="../scripts/jquery-3.7.1.min.js"></script>
+        <script>
+            'use strict';
+
+            $(document).ready(function(){
+                console.log('READY');
+                //プレイエリア生成
+                for(let i=1; i<=16; i++){
+                    $('#playArea').append(`<div class="row"></div>`);
+                    for(let j=1; j<=16; j++) {
+                        $(`.row:nth-child(${i})`).append(`<span class="box box${i}-${j}"><span></span></span>`);
+                    }
+                }
+                //mineを決定
+                let numMine=0;
+                while (numMine<20) {
+                    const mineX = Math.floor(Math.random()*16)+1;
+                    const mineY = Math.floor(Math.random()*16)+1;
+                    if(!$(`.box${mineX}-${mineY} span`).hasClass('mine')) {
+                        $(`.box${mineX}-${mineY} span`).addClass('mine');
+                        numMine++;
+                    }
+                }
+                //周りのmineを数える
+                for(let i=1; i<=16; i++){
+                    for(let j=1; j<=16; j++){
+                        let aroundMine=0;
+                        if($(`.box${i-1}-${j-1} span`).hasClass('mine')){ aroundMine++;}
+                        if($(`.box${i-1}-${j} span`).hasClass('mine')){ aroundMine++;}
+                        if($(`.box${i-1}-${j+1} span`).hasClass('mine')){ aroundMine++;}
+                        if($(`.box${i}-${j-1} span`).hasClass('mine')){ aroundMine++;}
+                        if($(`.box${i}-${j+1} span`).hasClass('mine')){ aroundMine++;}
+                        if($(`.box${i+1}-${j-1} span`).hasClass('mine')){ aroundMine++;}
+                        if($(`.box${i+1}-${j} span`).hasClass('mine')){ aroundMine++;}
+                        if($(`.box${i+1}-${j+1} span`).hasClass('mine')){ aroundMine++;}
+                        $(`.box${i}-${j} span`).addClass(`aroundMine${aroundMine}`);
+                    }
+                }
+                //クリックイベント
+                $('#flag').on('click', function(){
+                    $(this).toggleClass('flagOn');
+                })
+                $('.box').on('click', function(){
+                    if(!$('#flag').hasClass('flagOn')){
+                        $(this).addClass('open');
+                    } else {
+                        $(this).toggleClass('flag')
+                    }
+                })
+            })
+        </script>
+    </body>
+</html>
