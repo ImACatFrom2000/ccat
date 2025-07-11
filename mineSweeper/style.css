@@ -1,3 +1,6 @@
+main {
+    display: flex;
+}
 .row {
     display: flex;
 }
@@ -18,16 +21,22 @@
 .flag {
     content: url(flag_white_sankaku1.png);
 }
+.flagOn {
+    background-color: yellow;
+}
 .open .mine {
     content: url(bakudan.png);
 }
+.open span::after {
+    margin: 10px;
+}
 .open .aroundMine1::after {
     content: "1";
-    color: blue;
+    color: skyblue;
 }
 .open .aroundMine2::after {
     content: "2";
-    color: green;
+    color: lawngreen;
 }
 .open .aroundMine3::after {
     content: "3";
