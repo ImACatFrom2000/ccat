@@ -25,8 +25,8 @@
 
             $(document).ready(function(){
                 console.log('READY');
-                const side=10;  //一辺のマス数
-                const numMine=10    //地雷の数
+                const side=16;  //一辺のマス数
+                const numMine=50    //地雷の数
 
                 $('#numMine').text(numMine);
 
@@ -37,60 +37,78 @@
                         $(`.row:nth-child(${i})`).append(`<span class="box" id="box${i}-${j}"><span></span></span>`);
                     }
                 }
-                //mineを設置
-                let i=0;
-                while (i<numMine) {
-                    const mineX = Math.floor(Math.random()*side)+1;
-                    const mineY = Math.floor(Math.random()*side)+1;
-                    if(!$(`#box${mineX}-${mineY} span`).hasClass('mine')) {
-                        $(`#box${mineX}-${mineY} span`).addClass('mine');
-                        i++;
-                    }
-                }
-                //周りのmineを数える
-                for(let i=1; i<=side; i++){
-                    for(let j=1; j<=side; j++){
-                        let aroundMine=0;
-                            if($(`#box${i-1}-${j-1} span`).hasClass('mine')){ aroundMine++;}
-                            if($(`#box${i-1}-${j} span`).hasClass('mine')){ aroundMine++;}
-                            if($(`#box${i-1}-${j+1} span`).hasClass('mine')){ aroundMine++;}
-                            if($(`#box${i}-${j-1} span`).hasClass('mine')){ aroundMine++;}
-                            if($(`#box${i}-${j+1} span`).hasClass('mine')){ aroundMine++;}
-                            if($(`#box${i+1}-${j-1} span`).hasClass('mine')){ aroundMine++;}
-                            if($(`#box${i+1}-${j} span`).hasClass('mine')){ aroundMine++;}
-                            if($(`#box${i+1}-${j+1} span`).hasClass('mine')){ aroundMine++;}
-                        $(`#box${i}-${j} span`).addClass(`aroundMine${aroundMine}`);
-                    }
-                }
-                //クリックイベント
-                let numFlag=0;
-                let numOpen=0;
+
+                let first = true;
+                let numOpen = 0;
+                let numFlag = 0;
+
+                //旗クリック
                 $('#flag').on('click', function(){
                     $(this).toggleClass('flagOn');
                 })
                 $('.box').on('click', function(){
-                    if(!$('#playArea').hasClass('miss')){
-                        if(!$('#flag').hasClass('flagOn')){
-                            if((!$(this).hasClass('flag'))&&(!$(this).hasClass('open'))){
-                                $(this).addClass('open');
-                                if($(this).children().hasClass('mine')){
-                                    $('#playArea').addClass('miss');
-                                    $('#result').text('失敗...');
+                    //初回クリック
+                    if(first){
+                        first = false;
+                        $(this).addClass('open');
+                        $(this).addClass('first');
+                        numOpen++;
+                        //mineを設置
+                        let i=0;
+                        while (i<numMine) {
+                            const mineX = Math.floor(Math.random()*side)+1;
+                            const mineY = Math.floor(Math.random()*side)+1;
+                            if(!(($(`#box${mineX-1}-${mineY-1}`).hasClass('first'))||($(`#box${mineX-1}-${mineY}`).hasClass('first'))||
+                                ($(`#box${mineX-1}-${mineY+1}`).hasClass('first'))||($(`#box${mineX}-${mineY-1}`).hasClass('first'))||
+                                ($(`#box${mineX}-${mineY}`).hasClass('first'))||($(`#box${mineX}-${mineY+1}`).hasClass('first'))||
+                                ($(`#box${mineX+1}-${mineY-1}`).hasClass('first'))||($(`#box${mineX+1}-${mineY}`).hasClass('first'))||
+                                ($(`#box${mineX+1}-${mineY+1}`).hasClass('first')))) {
+                                    if(!$(`#box${mineX}-${mineY} span`).hasClass('mine')){
+                                        $(`#box${mineX}-${mineY} span`).addClass('mine');
+                                        i++;
+                                    }
+                                }
+                        }
+                        //aroundMineを設定
+                        for(let i=1; i<=side; i++){
+                            for(let j=1; j<=side; j++){
+                                let aroundMine=0;
+                                    if($(`#box${i-1}-${j-1} span`).hasClass('mine')){ aroundMine++;}
+                                    if($(`#box${i-1}-${j} span`).hasClass('mine')){ aroundMine++;}
+                                    if($(`#box${i-1}-${j+1} span`).hasClass('mine')){ aroundMine++;}
+                                    if($(`#box${i}-${j-1} span`).hasClass('mine')){ aroundMine++;}
+                                    if($(`#box${i}-${j+1} span`).hasClass('mine')){ aroundMine++;}
+                                    if($(`#box${i+1}-${j-1} span`).hasClass('mine')){ aroundMine++;}
+                                    if($(`#box${i+1}-${j} span`).hasClass('mine')){ aroundMine++;}
+                                    if($(`#box${i+1}-${j+1} span`).hasClass('mine')){ aroundMine++;}
+                                $(`#box${i}-${j} span`).addClass(`aroundMine${aroundMine}`);
+                            }
+                        }
+                    } else {
+                        //2回目以降クリック時
+                        if(!$('#playArea').hasClass('miss')){
+                            if(!$('#flag').hasClass('flagOn')){
+                                if((!$(this).hasClass('flag'))&&(!$(this).hasClass('open'))){
+                                    $(this).addClass('open');
+                                    if($(this).children().hasClass('mine')){
+                                        $('#playArea').addClass('miss');
+                                        $('#result').text('失敗...');
+                                    } else {
+                                        numOpen++;
+                                    }
+                                    if(numOpen === side**2-numMine){
+                                        $('#result').text('クリア！');
+                                    }
+                                }
+                            } else if (!$(this).hasClass('open')){
+                                $(this).toggleClass('flag')
+                                if($(this).hasClass('flag')){
+                                    numFlag++;
                                 } else {
-                                    numOpen++;
+                                    numFlag--;
                                 }
-                                if(numOpen === side**2-numMine){
-                                    $('#result').text('クリア！');
-                                }
+                                $('#numFlag').text(numFlag);
                             }
-                        } else if (!$(this).hasClass('open')){
-                            $(this).toggleClass('flag')
-                            if($(this).hasClass('flag')){
-                                numFlag++;
-                            } else {
-                                numFlag--;
-                            }
-                            $('#numFlag').text(numFlag);
                         }
                     }
                 })
