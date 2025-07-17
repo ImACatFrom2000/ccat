@@ -2,211 +2,168 @@
 <html lang="ja">
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="css/reset.css">
-        <link rel="stylesheet" href="css/style.css">
-        <title>近藤七海のポートフォリオ</title>
+        <link rel="stylesheet" href="style.css">
+        <title>マインスイーパ</title>
     </head>
     <body>
         <header>
-            <div class="title">
-                <img src="images/icon.png" class="ポートフォリオのアイコン">
-                <h1 class="site-title"><span>近藤七海の</span><span>ポートフォリオ</span></h1>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="#about">ABOUT</a></li>
-                    <li><a href="#works">WORKS</a></li>
-                    <li><a href="#contact">CONTACT</a></li>
-                </ul>
-            </nav>
+            <h1>マインスイーパ</h1>
         </header>
         <main>
-            <section id="about">
-                <h2 class="section-title">ABOUT</h2>
-                <div class="introduction">
-                    <h3 class="sub-section-title">自己紹介</h3>
-                    <p>新卒でものづくりへの興味から印刷製本会社へ入社、一身上の都合で退社。学生時代に少し学んだプログラミングを仕事にしたいが経験が少なく自信もないため、職業訓練校へ入校。半年かけてwebプログラミング(HTML/CSS/JavaScript)やPHPについて学んだ。趣味はテレビゲーム、特にじっくり考える系のアドベンチャーゲームが好き。</p>
+            <div id="playArea"><!--JavaScriptで記述（プレイエリア生成）--></div>
+            <div id="sideArea">
+                <div id="buttons">
+                    <button id="flag"><img src="flag_white_sankaku1.png"></button>
+                    <button id="hint"><img src="denkyuu_on.png"></button>
                 </div>
-                <div class="skills">
-                    <h3 class="sub-section-title">できること</h3>
-                    <ul>
-                        <li>HTML<span>★★★★☆ 大体わかった</span></li>
-                        <li>CSS<span>★★★★☆ 大体わかった</span></li>
-                        <li>JavaScript<span>★★★☆☆ 基本はわかった</span></li>
-                        <li>jQuery<span>★★★☆☆ 基本はわかった</span></li>
-                        <li>ajax<span>★★☆☆☆ なんとなくわかった</span></li>
-                        <li>JSON<span>★★★☆☆ 基本はわかった</span></li>
-                    </ul>
+                <ol id="restHint">
+                    <li><img src="denkyuu_on.png"></li>
+                    <li><img src="denkyuu_on.png"></li>
+                    <li><img src="denkyuu_on.png"></li>
+                </ol>
+                <div id="msgArea">
+                    <p>地雷の数: <span id="numMine"></span></p>
+                    <p>フラッグの数:<span id="numFlag">0</span></p>
+                    <p id="result"></p>
+                    <p id="time">クリア時間は<span id="minutes"></span>分<span id="seconds"></span>秒でした。</p>
                 </div>
-                <div class="links">
-                    <h3 class="sub-section-title">リンク</h3>
-                    <p class="github"><a href="https://github.com/ImACatFrom2000/portforio/tree/main" target="_blank">GitHub</a></p>
-                </div>
-            </section>
-            <section id="works">
-                <h2 class="section-title">WORKS</h2>
-                <div class="work" id="exercise1">
-                    <div class="text">
-                        <h3 class="sub-section-title">演習課題1</h3>
-                        <dl class="data">
-                            <dt>概要</dt><dd>訓練校で配布されたデザインカンプをもとに作ったwebサイトです。架空の住宅リフォーム業者のホームページを作りました。スマホ閲覧に対応しています</dd>
-                            <dt>制作時間</dt><dd>48時間</dd>
-                            <dt>担当範囲</dt><dd>すべて</dd>
-                            <dt>使用技術</dt><dd>HTML/CSS</dd>
-                            <dt>アピールポイント</dt><dd>レスポンシビリティにこだわりました。画面を縮めるとヘッダーのナビゲーションの文字が改行してしまうのが気になったため、メディアクエリで一定の画面幅を下回ったらフォントサイズやmarginも縮むようにした。</dd>
-                        </dl>
-                        <ul class="links">
-                            <li><button class="page-link"><a href="exercise1/index.html" target="_blank">ページを見る</a></button></li>
-                            <li><button class="github-link"><a href="https://github.com/ImACatFrom2000/portforio/tree/main/exercises1" target="_blank">コードを見る</a></button></li>
-                        </ul>
-                    </div>
-                    <img src="images/exercise1.png" alt="演習1のイメージ">
-                </div>
-                <div class="work" id="exercise2">
-                    <div class="text">
-                        <h3 class="sub-section-title">演習課題2</h3>
-                        <dl class="data">
-                            <dt>概要</dt><dd>訓練校で配布されたデザインカンプをもとに作ったwebサイトです。3人グループで架空の台湾観光案内サイトを作りました。スマホ閲覧に対応しています</dd>
-                            <dt>制作時間</dt><dd>54時間*3人</dd>
-                            <dt>担当範囲</dt><dd>トップページ、台南ページ。ヘッダー・フッター・ナビゲーション・ロード画面は全ページ共通のため他メンバーが作成。モーダルは他メンバーが作ったものを調整して流用。</dd>
-                            <dt>使用技術</dt><dd>HTML/CSS/JavaScript(jQuery含)</dd>
-                            <dt>アピールポイント</dt><dd>スライダーを自作しました。作り方をwebで検索するとスライダー用ライブラリを使えば簡単そうでしたが、今回は授業で学んだばかりのJavaScriptとjQueryへの理解を深めるため、JSとjQueryのみで作りました。</dd>
-                        </dl>
-                        <ul class="links">
-                            <li><button class="page-link"><a href="exercise2/index.html" target="_blank">ページを見る</a></button></li>
-                            <li><button class="github-link"><a href="https://github.com/ImACatFrom2000/portforio/tree/main/exercise2" target="_blank">コードを見る</a></button></li>
-                        </ul>
-                    </div>
-                    <img src="images/exercise2.png" alt="演習2のイメージ">
-                </div>
-                <div class="work" id="challenge1">
-                    <div class="text">
-                        <h3 class="sub-section-title">チャレンジ課題1</h3>
-                        <dl class="data">
-                            <dt>概要</dt><dd>入力した任意の10進数を2進数と16進数に変換して表示するプログラムです。2進数から10進数、16進数から10進数もあります。</dd>
-                            <dt>制作時間</dt><dd>4時間</dd>
-                            <dt>担当範囲</dt><dd>すべて</dd>
-                            <dt>使用技術</dt><dd>HTML/CSS/JavaScript(jQuery含)</dd>
-                            <dt>アピールポイント</dt><dd>2進数や16進数へ変換する関数もあるようですが、現時点での知識の理解を深めるため、使わずに作りました。</dd>
-                        </dl>
-                        <ul class="links">
-                            <li><button class="page-link"><a href="challenge1/index.html" target="_blank">ページを見る</a></button></li>
-                            <li><button class="github-link"><a href="https://github.com/ImACatFrom2000/portforio/tree/main/challenge1" target="_blank">コードを見る</a></button></li>
-                        </ul>
-                    </div>
-                    <img src="images/challenge1.png" alt="チャレンジ課題1のイメージ">
-                </div>
-                <div class="work" id="challenge2">
-                    <div class="text">
-                        <h3 class="sub-section-title">チャレンジ課題2</h3>
-                        <dl class="data">
-                            <dt>概要</dt><dd>簡単な四則演算が可能な計算機です。</dd>
-                            <dt>制作時間</dt><dd>10時間</dd>
-                            <dt>担当範囲</dt><dd>すべて</dd>
-                            <dt>使用技術</dt><dd>HTML/CSS/JavaScript(jQuery含)</dd>
-                            <dt>アピールポイント</dt><dd>自力で作りました。</dd>
-                        </dl>
-                        <ul class="links">
-                            <li><button class="page-link"><a href="challenge2/index.html" target="_blank">ページを見る</a></button></li>
-                            <li><button class="github-link"><a href="https://github.com/ImACatFrom2000/portforio/tree/main/challenge2" target="_blank">コードを見る</a></button></li>
-                        </ul>
-                    </div>
-                    <img src="images/challenge2.png" alt="チャレンジ課題2のイメージ">
-                </div>
-                <div class="work" id="quiz">
-                    <div class="text">
-                        <h3 class="sub-section-title">ポケモンクイズ</h3>
-                        <dl class="data">
-                            <dt>概要</dt><dd>問題文の条件を満たすポケモンを選択肢から選ぶ4択クイズです。スマホ閲覧に対応しています。</dd>
-                            <dt>制作時間</dt><dd>14時間</dd>
-                            <dt>担当範囲</dt><dd>すべて</dd>
-                            <dt>使用技術</dt><dd>HTML/CSS/JavaScript(jQuery含)/JSON</dd>
-                            <dt>アピールポイント</dt><dd>選択肢となるポケモンの名前やタイプ等のデータをJSONファイルにすることで、データの編集を簡単に行えるようにしました。
-                                リザルト画面に「もう一度遊ぶ」ボタンを置いたので、リロードせずとも何度もプレイできます。</dd>
-                        </dl>
-                        <ul class="links">
-                            <li><button class="page-link"><a href="quiz/index.html" target="_blank">ページを見る</a></button></li>
-                            <li><button class="github-link"><a href="https://github.com/ImACatFrom2000/portforio/tree/main/quiz" target="_blank">コードを見る</a></button></li>
-                        </ul>
-                    </div>
-                    <img src="images/quiz.png" alt="ポケモンクイズのイメージ">
-                </div>
-                <div class="work" id="coordinate">
-                    <div class="text">
-                        <h3 class="sub-section-title">座標当てゲーム</h3>
-                        <dl class="data">
-                            <dt>概要</dt><dd>1000px × 500pxのエリアからお題の座標をクリックするミニゲーム。正解との距離によってメッセージが変わります。</dd>
-                            <dt>制作時間</dt><dd>4時間</dd>
-                            <dt>担当範囲</dt><dd>すべて</dd>
-                            <dt>使用技術</dt><dd>HTML/CSS/JavaScript(jQuery含)</dd>
-                            <dt>アピールポイント</dt><dd>offsetプロパティやMath.sqrt()メソッドに初挑戦。座標の領域をどう指定するか、苦戦しました。</dd>
-                        </dl>
-                        <ul class="links">
-                            <li><button class="page-link"><a href="coordinate/index.html" target="_blank">ページを見る</a></button></li>
-                            <li><button class="github-link"><a href="https://github.com/ImACatFrom2000/portforio/tree/main/coordinate" target="_blank">コードを見る</a></button></li>
-                        </ul>
-                    </div>
-                    <img src="images/coordinate.png" alt="座標当てゲームのイメージ">
-                </div>
-                <div class="work" id="untitled">
-                    <div class="text">
-                        <h3 class="sub-section-title">タイトル未定</h3>
-                        <dl class="data">
-                            <dt>概要</dt><dd>画面上部から落ちてくるフルーツを、プレイヤーを左右に動かしてキャッチするゲームです。</dd>
-                            <dt>制作時間</dt><dd>5時間</dd>
-                            <dt>担当範囲</dt><dd>すべて</dd>
-                            <dt>使用技術</dt><dd>HTML/CSS/JavaScript(jQuery含)</dd>
-                            <dt>アピールポイント</dt><dd>keydownメソッドの練習から発展させたゲームです。
-                                setIntervalを使って決まった回数だけ動作を繰り返すことを学びました。
-                                どう書けばプレイヤーがフルーツに触れたことになるかが難しかったです。</dd>
-                        </dl>
-                        <ul class="links">
-                            <li><button class="page-link"><a href="games/index.html" target="_blank">ページを見る</a></button></li>
-                            <li><button class="github-link"><a href="https://github.com/ImACatFrom2000/portforio/tree/main/games" target="_blank">コードを見る</a></button></li>
-                        </ul>
-                    </div>
-                    <img src="images/untitledGame.png" alt="タイトル未定のイメージ">
-                </div>
-                <div class="work" id="mineSweeper">
-                    <div class="text">
-                        <h3 class="sub-section-title">マインスイーパ</h3>
-                        <dl class="data">
-                            <dt>概要</dt><dd>マインスイーパです。初級・中級・上級の3モードがあります。3回までヒントを見ることができます。</dd>
-                            <dt>制作時間</dt><dd>10時間</dd>
-                            <dt>担当範囲</dt><dd>すべて</dd>
-                            <dt>使用技術</dt><dd>HTML/CSS/JavaScript(jQuery含)</dd>
-                            <dt>アピールポイント</dt><dd>ダミーテキストダミーテキストダミーテキストダミーテキストダミーテキストダミーテキストダミーテキストダミーテキストダミーテキストダミーテキストダミーテキストダミーテキストダミーテキストダミーテキストダミ</dd>
-                        </dl>
-                        <ul class="links">
-                            <li><button class="page-link"><a href="games/index.html" target="_blank">ページを見る</a></button></li>
-                            <li><button class="github-link"><a href="https://github.com/ImACatFrom2000/portforio/tree/main/games" target="_blank">コードを見る</a></button></li>
-                        </ul>
-                    </div>
-                    <img src="images/mineSweeper.png" alt="マインスイーパのイメージ">
-                </div>
-            </section>
-            <section id="contact">
-                <h2 class="section-title">CONTACT</h2>
-                <p class="attention">ハリボテです！ご入力いただいても送信できません</p>
-                <form>
-                    <dl>
-                        <dt>お名前</dt>
-                        <dd><input type="text" name="userName" required></dd>
-                        <dt>メールアドレス</dt>
-                        <dd><input type="email" name="userEmail" required></dd>
-                        <dt>内容</dt><dd><textarea name="askContent"></textarea></dd>
-                    </dl>
-                    <input type="submit" value="入力内容を確認する">
-                </form>
-            </section>
+            </div>
+            
         </main>
-        <script src="scripts/jquery-3.7.1.min.js"></script>
+        <script src="../scripts/jquery-3.7.1.min.js"></script>
         <script>
             'use strict';
 
             $(document).ready(function(){
+                console.log('READY');
+                const side=16;  //一辺のマス数
+                const numMine=50    //地雷の数
+                let restHint = 3;   //ヒントを見れる回数
+                let first = true;
+                let numOpen = 0;
+                let numFlag = 0;
+                let startTime;
 
+                $('#numMine').text(numMine);
+
+                //プレイエリア生成
+                for(let i=1; i<=side; i++){
+                    $('#playArea').append(`<div class="row"></div>`);
+                    for(let j=1; j<=side; j++) {
+                        $(`.row:nth-child(${i})`).append(`<span class="box" id="box${i}-${j}"><span></span></span>`);
+                    }
+                }
+
+                //旗クリック
+                $('#flag').on('click', function(){
+                    $(this).toggleClass('flagOn');
+                    if($('#hint').hasClass('hintOn')){
+                        $('#hint').removeClass('hintOn');
+                    }
+                })
+                //ヒントクリック
+                $('#hint').on('click', function(){
+                    if(restHint>0){
+                        $(this).toggleClass('hintOn');
+                        if($('#flag').hasClass('flagOn')){
+                            $('#flag').removeClass('flagOn');
+                        }
+                    }
+                })
+
+                $('.box').on('click', function(){
+                    //初回クリック
+                    if(first){
+                        first = false;
+                        $(this).addClass('open');
+                        $(this).addClass('first');
+                        numOpen++;
+                        startTime = new Date();
+                        //mineを設置
+                        let i=0;
+                        while (i<numMine) {
+                            const mineX = Math.floor(Math.random()*side)+1;
+                            const mineY = Math.floor(Math.random()*side)+1;
+                            if(!(($(`#box${mineX-1}-${mineY-1}`).hasClass('first'))||($(`#box${mineX-1}-${mineY}`).hasClass('first'))||
+                                ($(`#box${mineX-1}-${mineY+1}`).hasClass('first'))||($(`#box${mineX}-${mineY-1}`).hasClass('first'))||
+                                ($(`#box${mineX}-${mineY}`).hasClass('first'))||($(`#box${mineX}-${mineY+1}`).hasClass('first'))||
+                                ($(`#box${mineX+1}-${mineY-1}`).hasClass('first'))||($(`#box${mineX+1}-${mineY}`).hasClass('first'))||
+                                ($(`#box${mineX+1}-${mineY+1}`).hasClass('first')))) {
+                                    if(!$(`#box${mineX}-${mineY} span`).hasClass('mine')){
+                                        $(`#box${mineX}-${mineY} span`).addClass('mine');
+                                        i++;
+                                    }
+                                }
+                        }
+                        //aroundMineを設定
+                        for(let i=1; i<=side; i++){
+                            for(let j=1; j<=side; j++){
+                                let aroundMine=0;
+                                    if($(`#box${i-1}-${j-1} span`).hasClass('mine')){ aroundMine++;}
+                                    if($(`#box${i-1}-${j} span`).hasClass('mine')){ aroundMine++;}
+                                    if($(`#box${i-1}-${j+1} span`).hasClass('mine')){ aroundMine++;}
+                                    if($(`#box${i}-${j-1} span`).hasClass('mine')){ aroundMine++;}
+                                    if($(`#box${i}-${j+1} span`).hasClass('mine')){ aroundMine++;}
+                                    if($(`#box${i+1}-${j-1} span`).hasClass('mine')){ aroundMine++;}
+                                    if($(`#box${i+1}-${j} span`).hasClass('mine')){ aroundMine++;}
+                                    if($(`#box${i+1}-${j+1} span`).hasClass('mine')){ aroundMine++;}
+                                $(`#box${i}-${j} span`).addClass(`aroundMine${aroundMine}`);
+                            }
+                        }
+                    } else {
+                        //2回目以降クリック時
+                        if(!$('#playArea').hasClass('miss') && !$(this).hasClass('open')) {
+                            if($('#flag').hasClass('flagOn')){
+                                //フラッグON
+                                $(this).toggleClass('flag')
+                                if($(this).hasClass('flag')){
+                                    numFlag++;
+                                } else {
+                                    numFlag--;
+                                }
+                                $('#numFlag').text(numFlag);
+                            } else
+                            if($('#hint').hasClass('hintOn')){
+                                //ヒントON
+                                if(restHint>0) {
+                                    $(this).addClass('hint');
+                                    $(`#restHint li:nth-child(${restHint}) img`).attr('src', 'denkyuu_off.png');
+                                    setTimeout(() => {
+                                        $(this).removeClass('hint')
+                                        restHint--;
+                                        if(restHint===0){
+                                            $('#hint').addClass('noHint');
+                                            $('#hint').removeClass('hintOn');
+                                        }
+                                        
+                                    }, 2000);
+                                }
+                            } else
+                            //通常クリック
+                            if(!$(this).hasClass('flag')){
+                                $(this).addClass('open');
+                                if($(this).children().hasClass('mine')){
+                                    $('#playArea').addClass('miss');
+                                    $('#result').text('失敗...');
+                                } else {
+                                    numOpen++;
+                                }
+                                if(numOpen === side**2-numMine){
+                                    //ゲームクリア
+                                    $('#result').text('クリア！');
+                                    const clearTime = new Date();
+                                    const time = clearTime.getTime() - startTime.getTime();
+                                    $('#time').attr('style', 'display: block');
+                                    const minutes = Math.floor(time/1000/60)%60;
+                                    const seconds = Math.floor(time/1000)%60;
+                                    console.log(`minutes: ${minutes} seconds: ${seconds}`);
+                                    $('#minutes').text(Math.floor(time/1000/60)%60);
+                                    $('#seconds').text(Math.floor(time/1000)%60);
+                                }
+                            }
+                        }
+                    }
+                })
             })
         </script>
     </body>
