@@ -1,6 +1,9 @@
 main {
     display: flex;
 }
+#time {
+    display: none;
+}
 .row {
     display: flex;
 }
@@ -15,55 +18,82 @@ main {
     width: 30px;
     height: 30px;
 }
-.open {
+.open, .hint {
     background-color: gray;
 }
 .flag {
     content: url(flag_white_sankaku1.png);
 }
+.hint {
+    border: 1px solid yellow
+}
 .flagOn {
     background-color: yellow;
 }
-.open .mine {
+.hintOn {
+    background-color: yellow;
+}
+.noHint {
+    background-color: gray;
+}
+.open .mine,
+.hint .mine {
     content: url(bakudan.png);
 }
-.open span::after {
+.open span::after,
+.hint span::after {
     margin: 10px;
 }
-.open .aroundMine1::after {
+.open .aroundMine1::after,
+.hint .aroundMine1::after {
     content: "1";
     color: skyblue;
 }
-.open .aroundMine2::after {
+.open .aroundMine2::after,
+.hint .aroundMine2::after {
     content: "2";
     color: lawngreen;
 }
-.open .aroundMine3::after {
+.open .aroundMine3::after,
+.hint .aroundMine3::after {
     content: "3";
     color: red;
 }
-.open .aroundMine4::after {
+.open .aroundMine4::after,
+.hint .aroundMine4::after {
     content: "4";
     color: yellow ;
 }
-.open .aroundMine5::after {
+.open .aroundMine5::after,
+.hint .aroundMine5::after {
     content: "5";
     color: orange;
 }
-.open .aroundMine6::after {
+.open .aroundMine6::after,
+.hint .aroundMine6::after {
     content: "6";
     color: purple;
 }
-.open .aroundMine7::after {
+.open .aroundMine7::after,
+.hint .aroundMine7::after {
     content: "7";
     color: brown;
 }
-.open .aroundMine8::after {
+.open .aroundMine8::after,
+.hint .aroundMine8::after {
     content: "8";
     color: white;
 }
 
-button img{
+#buttons img{
     width: 50px;
     height: 50px;
+}
+#restHint {
+    display: flex;
+    flex-direction: row-reverse;
+    list-style-type: none;
+}
+#restHint li img {
+    height: 40px;
 }
