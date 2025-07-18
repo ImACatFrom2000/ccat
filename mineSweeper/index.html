@@ -12,17 +12,27 @@
                 <ol id="selectMode">
                     <li class="easy">
                         初級<br>
-                        8×8マス　地雷:20
+                        8×8マス　地雷:20<br>
+                        <button>PLAY</button>
                     </li>
                     <li class="normal">
                         中級<br>
-                        12×12マス　地雷:35
+                        12×12マス　地雷:35<br>
+                        <button>PLAY</button>
                     </li>
                     <li class="hard">
                         上級<br>
-                        16×16マス　地雷:50
+                        16×16マス　地雷:50<br>
+                        <button>PLAY</button>
+                    </li>
+                    <li class="custom">
+                        カスタム<br>
+                        一辺のマス数: <input type="text" name="side"><br>
+                        地雷: <input type="text" name="mine"><br>
+                        <button>PLAY</button>
                     </li>
                 </ol>
+                <p>カスタムモードは、(一辺のマス数の2乗-9) >= 地雷になるように設定してください。</p>
             </div>
             <div id="game">
                 <div id="playArea"><!--JavaScriptで記述（プレイエリア生成）--></div>
@@ -52,18 +62,24 @@
                 let side;  //一辺のマス数
                 let numMine;    //地雷の数
 
-                $('#top li').on('click', function(){
+                $('#top li button').on('click', function(){
+                        // console.log($('input[name="side"]').val());
+                        // console.log($('input[name="mine"]').attr('value'));
                     $('#top').attr('style', 'display: none');
                     $('#game').attr('style', 'display: flex');
-                    if($(this).hasClass('easy')){
+                    if($(this).parent().hasClass('easy')){
                         side = 8;
                         numMine = 20;
-                    } else if($(this).hasClass('normal')){
+                    } else if($(this).parent().hasClass('normal')){
                         side = 12;
                         numMine = 35;
-                    } else {
+                    } else if($(this).parent().hasClass('hard')){
                         side = 16;
                         numMine = 50;
+                    } else if($(this).parent().hasClass('custom')){
+                        event.preventDefault();
+                        side = $('input[name="side"]').val();
+                        numMine = $('input[name="mine"]').val();
                     }
                     game();
                 })
